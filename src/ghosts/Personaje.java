@@ -23,12 +23,15 @@ public class Personaje {
     boolean esPlayer1;
     boolean posicionado = false;
     ImageIcon iconoEscondido;
-    
+    String rutaImagen;
+    private boolean colocado;
+
     public Personaje(String nombre, int rango, boolean Player1, String iconPath) {
        this.nombre = nombre;
        this.rango = rango;
        this.esPlayer1 = Player1;
-       
+       rutaImagen = iconPath;
+
         try {
            Image resizedImg = resizeImage(ImageIO.read(new File("src/Icons/ghost.png")), 52, 52);
            iconoEscondido = new ImageIcon(resizedImg);
@@ -46,16 +49,8 @@ public class Personaje {
     
     private void loadIcon() {
         String filename;
-        if (nombre.equals("bueno")) {
-                filename = "src/Icons/bueno.png";
-        } else if (nombre.equals("malo")) {
-                filename = "src/Icons/malo.png";
-        }
-        else 
             filename = "src/Icons/" + nombre.replace(" ", "") + ".png";
-        
-        try {
-            
+        try {            
             Image newImg = resizeImage(ImageIO.read(new File(filename)), 52, 52);
             icono = new ImageIcon(newImg);
         } catch (Exception e) {

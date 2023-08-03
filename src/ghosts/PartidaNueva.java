@@ -93,7 +93,7 @@ public class PartidaNueva extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-        public void crearJuego() {
+    public void crearJuego() {
         Usuario player1, player2;
         if (bandoSeleccionado.equals("Player1")) {
             player1 = player;

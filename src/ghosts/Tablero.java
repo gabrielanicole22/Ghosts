@@ -6,7 +6,7 @@ package ghosts;
 
 /**
  *
- * @author User
+ * @author Gabriela Mejía
  */
 import javax.swing.*;
 import java.awt.*;
@@ -171,73 +171,63 @@ public class Tablero extends JPanel{
     }
 
 private boolean esMovimientoValido(int row, int column) {
-    int currentRow = casillaSeleccionada.row;
-    int currentColumn = casillaSeleccionada.column;
+        int currentRow = casillaSeleccionada.row;
+        int currentColumn = casillaSeleccionada.column;
 
-    boolean esPlayer1 = casillaSeleccionada.personajeActual.esPlayer1;
+        boolean esPlayer1 = casillaSeleccionada.personajeActual.esPlayer1;
 
-    if (casillaSeleccionada.personajeActual.rango == 1 || casillaSeleccionada.personajeActual.rango == 2 || casillaSeleccionada.personajeActual.rango == 3 || casillaSeleccionada.personajeActual.rango == 4) {
         // Verificar si el movimiento es ortogonal
         boolean isOrthogonal = (row == currentRow && Math.abs(column - currentColumn) == 1) ||
                 (column == currentColumn && Math.abs(row - currentRow) == 1);
 
         // Verificar si la nueva posición está dentro de los espacios restringidos
-        boolean isRestricted;
+        boolean isRestricted = (row == 0 && column == 0) || (row == 0 && column == 5) ||
+                (row == 5 && column == 0) || (row == 5 && column == 5);
 
-        if (esPlayer1) {
-            isRestricted = (row == 5 && column == 0) || (row == 5 && column == 5);
-        } else {
-            isRestricted = (row == 0 && column == 0) || (row == 0 && column == 5);
-        }
-
-        // verificar si hay un personaje en la casilla
-        boolean hasCharacter = (casillas[row][column].personajeActual != null);
-
-        // VERIFICAR QUE SI HAY UN PERSONAJE, QUE ESTE SEA DEL MISMO BANDO
-        if (hasCharacter) {
-            hasCharacter = (casillas[row][column].personajeActual.esPlayer1 == esPlayer1);
-        }
+        // verificar si hay un personaje en la casilla y que sea del mismo bando
+        boolean hasCharacter = casillas[row][column].personajeActual != null &&
+                casillas[row][column].personajeActual.esPlayer1 == esPlayer1;
 
         // Si el personaje es de rango 2 y se mueve a las casillas mencionadas o si el personaje es de rango 4 y se mueve a las casillas mencionadas, se registra al jugador actual como ganador
-    if ((casillaSeleccionada.personajeActual.rango == 2 && ((row == 0 && column == 0) || (row == 0 && column == 5)))
-            || (casillaSeleccionada.personajeActual.rango == 4 && ((row == 5 && column == 0) || (row == 5 && column == 5)))) {
-        juegoTerminado = true;
-        Usuario ganador, perdedor;
-        String bandoGanador, bandoPerdedor;
-        if (turnoPlayer1) {
-            ganador = Player1;
-            perdedor = Player2;
-            bandoGanador = "Player 1";
-            bandoPerdedor = "Player 2";
-        } else {
-            ganador = Player2;
-            perdedor = Player1;
-            bandoGanador = "Player 2";
-            bandoPerdedor = "Player 1";
+        if ((casillaSeleccionada.personajeActual.rango == 2 && ((row == 0 && column == 0) || (row == 0 && column == 5)))
+                || (casillaSeleccionada.personajeActual.rango == 4 && ((row == 5 && column == 0) || (row == 5 && column == 5)))) {
+            juegoTerminado = true;
+            Usuario ganador, perdedor;
+            String bandoGanador, bandoPerdedor;
+            if (turnoPlayer1) {
+                ganador = Player1;
+                perdedor = Player2;
+                bandoGanador = "Player 1";
+                bandoPerdedor = "Player 2";
+            } else {
+                ganador = Player2;
+                perdedor = Player1;
+                bandoGanador = "Player 2";
+                bandoPerdedor = "Player 1";
+            }
+
+            Partida partidaGanador = new Partida(perdedor, true, bandoGanador, 3, new Date());
+            Partida partidaPerdedor = new Partida(ganador, false, bandoPerdedor, 0, new Date());
+
+            // Agrega las partidas a los jugadores
+            ganador.addPartida(partidaGanador);
+            perdedor.addPartida(partidaPerdedor);
+
+            // Agrega las partidas al sistema de usuarios (si es necesario)
+            sistemaUsuarios.actualizarUsuario(ganador);
+            sistemaUsuarios.actualizarUsuario(perdedor);
+
+            // Mostrar mensaje de victoria
+            if (turnoPlayer1) {
+                JOptionPane.showMessageDialog(null, Player1.getUsuario() + " ha ganado. Logró sacar un fantasma bueno.");
+            } else {
+                JOptionPane.showMessageDialog(null, Player2.getUsuario() + " ha ganado. Logró sacar un fantasma bueno.");
+            }
         }
 
-        Partida partidaGanador = new Partida(perdedor, true, bandoGanador, 3, new Date());
-        Partida partidaPerdedor = new Partida(ganador, false, bandoPerdedor, 0, new Date());
-
-        // Agrega las partidas a los jugadores
-        ganador.addPartida(partidaGanador);
-        perdedor.addPartida(partidaPerdedor);
-
-        // Agrega las partidas al sistema de usuarios (si es necesario)
-        sistemaUsuarios.actualizarUsuario(ganador);
-        sistemaUsuarios.actualizarUsuario(perdedor);
-
-        // Mostrar mensaje de victoria
-        if (turnoPlayer1) {
-            JOptionPane.showMessageDialog(null, Player1.getUsuario() + " ha ganado. Logró sacar un fantasma bueno.");
-        } else {
-            JOptionPane.showMessageDialog(null, Player2.getUsuario() + " ha ganado. Logró sacar un fantasma bueno.");
-        }
-}
         // El movimiento es válido solo si es ortogonal, no está en un espacio restringido (zonas prohibidas) y no tiene otra ficha del mismo bando
         return isOrthogonal && !isRestricted && !hasCharacter;
-}    return false;
-}
+    }
 
 
     private boolean tieneMovimientosValidos(boolean bandoPlayer1) {
@@ -373,11 +363,11 @@ private boolean esMovimientoValido(int row, int column) {
         String player2Nombre = NombreUser2();
         borrarResaltadoMovimientos();
         resaltarZonasProhibidas();
-        mostrarPersonajesEliminados();
 
         gameWindow.setTurnoLabel(mensajeTurno);
         gameWindow.setPlayer1(player1Nombre);
         gameWindow.setPlayer2(player2Nombre);
+        mostrarPersonajesEliminados();
 
         if (!esTutorial) esconderPersonajes();
         setVisible(true);
@@ -457,12 +447,13 @@ private boolean esMovimientoValido(int row, int column) {
         resaltarZonasProhibidas();
     }
 
-    public void mostrarPersonajesEliminados() {
-    GhostsMalosPlayer1=4;
-    GhostsMalosPlayer2=4;
-    GhostsBuenosPlayer1=4;
-    GhostsBuenosPlayer2=4;
-    String mensajeVictoria=" ";
+public void mostrarPersonajesEliminados() {
+    GhostsMalosPlayer1 = 4;
+    GhostsMalosPlayer2 = 4;
+    GhostsBuenosPlayer1 = 4;
+    GhostsBuenosPlayer2 = 4;
+    String mensajeVictoria = " ";
+    
     for (Personaje personaje : FantasmasEliminadosPlayer1) {
         if (personaje.rango == 1) {
             GhostsMalosPlayer1--;
@@ -487,20 +478,18 @@ private boolean esMovimientoValido(int row, int column) {
     GhostsP2EliminatedArea.setText(mensajePlayer2);
 
     // Verificar si los fantasmas buenos o malos llegaron a 0
-    if (GhostsBuenosPlayer1 == 0 || GhostsBuenosPlayer2 == 0) {
-        mensajeVictoria = (GhostsBuenosPlayer1 == 0) ? Player2.getUsuario() + " ha ganado. Fantasmas buenos de " + Player1.getUsuario() + " llegaron a 0." 
-                                                         : Player1.getUsuario() + " ha ganado. Fantasmas buenos de " + Player2.getUsuario() + " llegaron a 0.";
-        JOptionPane.showMessageDialog(null, mensajeVictoria);
-            gameWindow.dispose();
-
-        // Registrar partida para los jugadores y asignar puntos
-        if (GhostsBuenosPlayer1 == 0) {
+    if (GhostsBuenosPlayer1 == 0 || GhostsBuenosPlayer2 == 0 || GhostsMalosPlayer1 == 0 || GhostsMalosPlayer2 == 0) {
+        if (GhostsBuenosPlayer1 == 0 || GhostsMalosPlayer1 == 0) {
+            mensajeVictoria = (GhostsBuenosPlayer1 == 0) ? Player2.getUsuario() + " ha ganado. Fantasmas buenos de " + Player1.getUsuario() + " llegaron a 0." 
+                                                        : Player2.getUsuario() + " ha ganado. Fantasmas malos de " + Player1.getUsuario() + " llegaron a 0.";
             Partida partidaGanador = new Partida(Player2, false, "2", 3, new Date());
             Partida partidaPerdedor = new Partida(Player1, false, "1", 0, new Date());
             Player2.addPartida(partidaGanador);
             Player1.addPartida(partidaPerdedor);
             stats.addPartida(false);
         } else {
+            mensajeVictoria = (GhostsBuenosPlayer2 == 0) ? Player1.getUsuario() + " ha ganado. Fantasmas buenos de " + Player2.getUsuario() + " llegaron a 0." 
+                                                        : Player1.getUsuario() + " ha ganado. Fantasmas malos de " + Player2.getUsuario() + " llegaron a 0.";
             Partida partidaGanador = new Partida(Player1, false, "1", 3, new Date());
             Partida partidaPerdedor = new Partida(Player2, false, "2", 0, new Date());
             Player1.addPartida(partidaGanador);
@@ -508,38 +497,13 @@ private boolean esMovimientoValido(int row, int column) {
             stats.addPartida(true);
         }
 
-    } else if (GhostsMalosPlayer1 == 0 || GhostsMalosPlayer2 == 0) {
-        juegoTerminado = true;
-        mensajeVictoria = (GhostsMalosPlayer1 == 0) ? Player2.getUsuario() + " ha ganado. Fantasmas malos de " + Player1.getUsuario() + " llegaron a 0."
-                                                            : Player1.getUsuario() + " ha ganado. Fantasmas malos de " + Player2.getUsuario() + " llegaron a 0.";
         JOptionPane.showMessageDialog(null, mensajeVictoria);
-            gameWindow.dispose();
-
-        // Registrar partida para los jugadores y asignar puntos
-        if (GhostsMalosPlayer1 == 0) {
-            juegoTerminado = true;
-            Partida partidaGanador = new Partida(Player2, false, "2", 3, new Date());
-            Partida partidaPerdedor = new Partida(Player1, false, "1", 0, new Date());
-            Player2.addPartida(partidaGanador);
-            Player1.addPartida(partidaPerdedor);
-            stats.addPartida(false);
-        } else {
-                                
-            juegoTerminado = true;
-
-            Partida partidaGanador = new Partida(Player1, false, "1", 3, new Date());
-            Partida partidaPerdedor = new Partida(Player2, false, "2", 0, new Date());
-            Player1.addPartida(partidaGanador);
-            Player2.addPartida(partidaPerdedor);
-            stats.addPartida(true);
-        }
+        juegoTerminado=true;
+        gameWindow.dispose();
+        mainWindow.setStats(stats);
     }
-            if (juegoTerminado) {
-            mainWindow.setStats(stats);
-            JOptionPane.showMessageDialog(null, mensajeVictoria);
-            gameWindow.dispose();
-        }
 }
+
 
     public void posicionarFantasmas() {
         Random random = new Random();

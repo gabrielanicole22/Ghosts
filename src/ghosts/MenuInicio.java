@@ -135,7 +135,7 @@ public class MenuInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         PartidaNueva partida = new PartidaNueva(sistemaUsuarios, stats, this);
         partida.cargarUsuarios();
-        partida.setVisible(true);  
+        partida.setVisible(true);
     }//GEN-LAST:event_jugarBtnActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
