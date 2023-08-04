@@ -22,7 +22,7 @@ public class Juego extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         gamePanel.setLayout(new GridLayout(1,1));
-        gamePanel.setMinimumSize(new Dimension(600, 600));
+        gamePanel.setMinimumSize(new Dimension(800, 800));
         tablero =new Tablero(
                 fantasmasEliminadosPlayer1,
                 fantasmasEliminadosPlayer2,

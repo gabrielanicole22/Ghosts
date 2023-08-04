@@ -517,6 +517,7 @@ public void mostrarPersonajesEliminados() {
                 filaAleatoria = filas[random.nextInt(filas.length)]; // Elegir entre filas 4 y 5
                 // Elegir columna aleatoria hasta que esté libre ese espacio y no sea una esquina
                 do {
+                    filaAleatoria=filas[random.nextInt(filas.length)];
                     columnaAleatoria = random.nextInt(6);
                 } while (casillas[filaAleatoria][columnaAleatoria].personajeActual != null ||
                         (filaAleatoria == 0 && (columnaAleatoria == 0 || columnaAleatoria == 5)) ||
@@ -538,6 +539,7 @@ public void mostrarPersonajesEliminados() {
 
                 // Elegir columna aleatoria hasta que esté libre ese espacio y no sea una esquina
                 do {
+                    filaAleatoria=filas[random.nextInt(filas.length)];    
                     columnaAleatoria = random.nextInt(6);
                 } while (casillas[filaAleatoria][columnaAleatoria].personajeActual != null ||
                         (filaAleatoria == 0 && (columnaAleatoria == 0 || columnaAleatoria == 5)) ||

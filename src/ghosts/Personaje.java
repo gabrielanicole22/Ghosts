@@ -22,21 +22,19 @@ public class Personaje {
     int rango;
     boolean esPlayer1;
     boolean posicionado = false;
-    ImageIcon iconoEscondido;
-    String rutaImagen;
-    private boolean colocado;
+    ImageIcon iconOculto;
+
 
     public Personaje(String nombre, int rango, boolean Player1, String iconPath) {
        this.nombre = nombre;
        this.rango = rango;
        this.esPlayer1 = Player1;
-       rutaImagen = iconPath;
 
         try {
            Image resizedImg = resizeImage(ImageIO.read(new File("src/Icons/ghost.png")), 52, 52);
-           iconoEscondido = new ImageIcon(resizedImg);
+           iconOculto = new ImageIcon(resizedImg);
         } catch (Exception e) {
-            iconoEscondido = null;
+            iconOculto = null;
         }
        try {
             Image newImg = resizeImage(ImageIO.read(new File(iconPath)), 52, 52);

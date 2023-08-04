@@ -24,7 +24,7 @@ public class CasillaTablero {
         this.column = column;
         this.personajeActual = personajeActual;
                 
-        label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        label.setBorder(BorderFactory.createLineBorder(Color.pink));
     }
        
     public void highlightMove(boolean activar) {
@@ -59,8 +59,8 @@ public class CasillaTablero {
     
     public void esconderCasilla(boolean esconder) {
         if (esconder) {
-            if (personajeActual.iconoEscondido != null) {
-                label.setIcon(personajeActual.iconoEscondido);
+            if (personajeActual.iconOculto != null) {
+                label.setIcon(personajeActual.iconOculto);
                 label.repaint();
             } else {
                 label.setIcon(null);
