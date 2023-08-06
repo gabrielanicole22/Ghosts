@@ -19,7 +19,7 @@ public class MiPerfil extends javax.swing.JFrame {
     private SistemaUsuarios sistemaUsuarios;
     private Usuario usuario;
     MenuInicio ventanaPrincipal;
-    
+
     public MiPerfil(SistemaUsuarios sistemaUsuarios, MenuInicio ventanaPrincipal) {
         initComponents();
         this.sistemaUsuarios = sistemaUsuarios;
@@ -27,41 +27,45 @@ public class MiPerfil extends javax.swing.JFrame {
         cargarPartidas();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+
     public void setSistemaUsuarios(SistemaUsuarios sistemaUsuarios) {
         this.sistemaUsuarios = sistemaUsuarios;
     }
-        
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
         mostrarInformacionUsuario();
     }
-    
+
     public void cargarPartidas() {
         ArrayList<Partida> partidas = sistemaUsuarios.usuarioIniciado.getPartidas();
         DefaultTableModel model = (DefaultTableModel) matchTable.getModel();
 
-        for (int i = (partidas.toArray().length - 1);i>=0;i--){
+        for (int i = (partidas.toArray().length - 1); i >= 0; i--) {
             Partida partida = partidas.get(i);
             String resultado;
-           
-            if (partida.puntosGanados == 1.5) resultado = "EMPATE";
-            else resultado = (partida.victoria) ?"VICTORIA":"DERROTA";
 
-            
+            if (partida.puntosGanados == 1.5) {
+                resultado = "EMPATE";
+            } else {
+                resultado = (partida.victoria) ? "VICTORIA" : "DERROTA";
+            }
+
             model.addRow(new Object[]{partida.contrincante.getUsuario(), resultado, partida.fecha, partida.puntosGanados});
         }
     }
-    
+
     public void mostrarInformacionUsuario() {
         if (usuario != null) {
             String nombreUsuario = usuario.getUsuario();
             labelUsuario.setText(nombreUsuario);
         }
     }
- 
+
     public void mostrarMiPerfil(String nombre) {
         labelUsuario.setText(nombre);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -18,7 +18,7 @@ public class Reportes extends javax.swing.JFrame {
      */
     SistemaUsuarios sistemaUsuarios;
     Stats stats;
-    
+
     public Reportes(SistemaUsuarios sistemaUsuarios, Stats stats) {
         initComponents();
         this.sistemaUsuarios = sistemaUsuarios;
@@ -27,39 +27,43 @@ public class Reportes extends javax.swing.JFrame {
         cargarRankings();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+
     void printUsuarios(Usuario[] usuarios) {
-        for (Usuario user:usuarios) {
+        for (Usuario user : usuarios) {
             System.out.println(user.getUsuario() + ": " + user.getPuntos());
         }
     }
-    
+
     void cargarRankings() {
         Usuario[] usuarios = sistemaUsuarios.getUsuariosActivos();
         printUsuarios(usuarios);
         usuarios = ordernarUsuario(usuarios);
         System.out.println("===ORDENADOS===");
         printUsuarios(usuarios);
-        
+
         DefaultTableModel model = (DefaultTableModel) rankingTable.getModel();
-        for (int i = 0; i<usuarios.length;i++) {
+        for (int i = 0; i < usuarios.length; i++) {
             Usuario user = usuarios[i];
-            model.addRow(new Object[]{i+1, user.getUsuario(), user.getPuntos()});
+            model.addRow(new Object[]{i + 1, user.getUsuario(), user.getPuntos()});
         }
     }
-    
+
     /**
      * Ordena los usuarios de mayor a menor en base a sus puntos
-     * @return 
+     *
+     * @return
      */
     Usuario[] ordernarUsuario(Usuario[] usuarios) {
         Usuario usuariosOrdenados[] = Arrays.copyOf(usuarios, usuarios.length);
         // Usar bubble sort para ordenar los usuarios en base a su puntuacion
-        
+
         // EL ARRAY ESTA ORDENADO PORQUE SOLO TIENE UN USUARIO
-        if (usuarios.length == 1) return usuarios;
-        
-        for (int i =0;i<usuariosOrdenados.length-1;i++){
-        /*
+        if (usuarios.length == 1) {
+            return usuarios;
+        }
+
+        for (int i = 0; i < usuariosOrdenados.length - 1; i++) {
+            /*
             if (i== usuarios.length -1) {
                 if (usuarios[i].getPuntos() < usuarios[i-1].getPuntos()) {
                     Usuario usuarioMayor = usuarios[i-1];
@@ -69,17 +73,18 @@ public class Reportes extends javax.swing.JFrame {
                     continue;
                 }
             }
-         */
-            
+             */
+
             Usuario L = usuarios[i];
-            Usuario R = usuarios[i+1];
-            if (L.getPuntos()<R.getPuntos()) {
+            Usuario R = usuarios[i + 1];
+            if (L.getPuntos() < R.getPuntos()) {
                 usuarios[i + 1] = L;
                 usuarios[i] = R;
             }
         }
         return usuarios;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

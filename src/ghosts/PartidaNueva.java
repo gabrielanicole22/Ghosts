@@ -11,12 +11,14 @@ import javax.swing.JComboBox;
  * @author Gabriela Mejía
  */
 public class PartidaNueva extends javax.swing.JFrame {
+
     SistemaUsuarios sistemaUsuarios;
-    Usuario player, contrincante; 
+    Usuario player, contrincante;
     JComboBox bandos;
-    String bandoSeleccionado="Player1";
+    String bandoSeleccionado = "Player1";
     Stats stats;
     MenuInicio mainWindow;
+
     /**
      * Creates new form PartidaNueva
      */
@@ -33,10 +35,13 @@ public class PartidaNueva extends javax.swing.JFrame {
         Usuario[] usuarios = sistemaUsuarios.getUsuariosActivos();
         System.out.println(usuarios.length);
         for (Usuario usuario : usuarios) {
-            if (sistemaUsuarios.usuarioIniciado.getUsuario().equals(usuario.getUsuario())) continue;
+            if (sistemaUsuarios.usuarioIniciado.getUsuario().equals(usuario.getUsuario())) {
+                continue;
+            }
             combobox.addItem(usuario.getUsuario());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,7 +90,7 @@ public class PartidaNueva extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (contrincante == null) {            
+        if (contrincante == null) {
             String nombreUsuario = (String) combobox.getSelectedItem();
             contrincante = sistemaUsuarios.getUsuario(nombreUsuario);
             dispose();
@@ -98,12 +103,11 @@ public class PartidaNueva extends javax.swing.JFrame {
         if (bandoSeleccionado.equals("Player1")) {
             player1 = player;
             player2 = contrincante;
-        }
-        else {
+        } else {
             player1 = contrincante;
             player2 = player;
         }
-        new Juego(sistemaUsuarios, stats, player1, player2, mainWindow);       
+        new Juego(sistemaUsuarios, stats, player1, player2, mainWindow);
     }
     /**
      * @param args the command line arguments

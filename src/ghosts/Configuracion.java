@@ -15,26 +15,28 @@ public class Configuracion extends javax.swing.JFrame {
      */
     private SistemaUsuarios sistemaUsuarios;
     private Usuario usuario;
-    MenuInicio ventanaPrincipal;   
+    MenuInicio ventanaPrincipal;
     Configuracion config;
-    
+
     public Configuracion(SistemaUsuarios sistemaUsuarios, MenuInicio ventanaPrincipal) {
         initComponents();
         this.sistemaUsuarios = sistemaUsuarios;
         this.ventanaPrincipal = ventanaPrincipal;
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-        public void setSistemaUsuarios(SistemaUsuarios sistemaUsuarios) {
+
+    public void setSistemaUsuarios(SistemaUsuarios sistemaUsuarios) {
         this.sistemaUsuarios = sistemaUsuarios;
     }
-    
+
     private void actualizarUsuario() {
         sistemaUsuarios.actualizarUsuario(usuario);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,8 +99,9 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void btnModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoActionPerformed
         // TODO add your handling code here:
-        ModoDeJuego modoJuego = new ModoDeJuego();
-        modoJuego.setVisible(true);
+        ModoDeJuego modo = new ModoDeJuego(sistemaUsuarios, this, usuario);
+        modo.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnModoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

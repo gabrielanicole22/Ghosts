@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Gabriela Mejía
  */
 public class SistemaUsuarios {
-    
+
     private static SistemaUsuarios instancia; // Instancia única de SistemaUsuarios
 
     int usuariosHistoricos = 0;

@@ -16,14 +16,13 @@ public class MenuLogin extends javax.swing.JFrame {
     /**
      * Creates new form MenuLogin
      */
-    
     SistemaUsuarios sistemaUsuarios;
     JFrame menuPrincipal = null;
-    
+
     public MenuLogin(SistemaUsuarios sistema, MenuPrincipal menuPrincipal) {
         initComponents();
         this.menuPrincipal = menuPrincipal;
-        
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.sistemaUsuarios = sistema;
     }
@@ -92,17 +91,17 @@ public class MenuLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                String username = usernameInput.getText().trim();
+        String username = usernameInput.getText().trim();
         String password = new String(passwordInput.getPassword());
-        
+
         Usuario usuarioActual = sistemaUsuarios.iniciarSesion(username, password);
-        
+
         if (usuarioActual == null) {
             JOptionPane.showMessageDialog(null, "ERROR. Credenciales incorrectas.");
             return;
         }
-        
-        MenuInicio menuInicio= new MenuInicio(sistemaUsuarios);
+
+        MenuInicio menuInicio = new MenuInicio(sistemaUsuarios);
         // Cerrar la ventana del menu principal ya que se abre la ventana del menu con el usuario iniciado
         menuPrincipal.dispose();;
         menuInicio.setVisible(true);

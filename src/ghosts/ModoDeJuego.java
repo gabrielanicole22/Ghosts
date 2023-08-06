@@ -13,8 +13,25 @@ public class ModoDeJuego extends javax.swing.JFrame {
     /**
      * Creates new form ModoDeJuego
      */
-    public ModoDeJuego() {
+    private SistemaUsuarios sistemaUsuarios;
+    private Usuario usuario;
+    MenuInicio ventanaPrincipal;
+    Configuracion config;
+
+    public ModoDeJuego(SistemaUsuarios sistemaUsuarios, Configuracion config, Usuario usuario) {
         initComponents();
+        this.sistemaUsuarios = sistemaUsuarios;
+        this.config = config;
+        this.usuario = usuario;
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    private void actualizarUsuario() {
+        sistemaUsuarios.actualizarUsuario(usuario);
     }
 
     /**
@@ -26,57 +43,71 @@ public class ModoDeJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnModoAleatorio = new javax.swing.JButton();
+        btnModoManual = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnModoAleatorio.setText("MODO ALEATORIO");
+        btnModoAleatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModoAleatorioActionPerformed(evt);
+            }
+        });
+
+        btnModoManual.setText("MODO MANUAL");
+        btnModoManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModoManualActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(139, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnModoAleatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModoManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(btnModoAleatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnModoManual, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModoDeJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModoDeJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModoDeJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModoDeJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnModoAleatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoAleatorioActionPerformed
+        // TODO add your handling code here:
+        Usuario.EsModoAleatorio = true;
+        Usuario.EsModoManual = false;
+        actualizarUsuario();
+        config.setSistemaUsuarios(sistemaUsuarios);
+        this.dispose();
+    }//GEN-LAST:event_btnModoAleatorioActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ModoDeJuego().setVisible(true);
-            }
-        });
-    }
+    private void btnModoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoManualActionPerformed
+        // TODO add your handling code here:
+        Usuario.EsModoAleatorio = false;
+        Usuario.EsModoManual = true;
+        actualizarUsuario();
+        config.setSistemaUsuarios(sistemaUsuarios);
+        this.dispose();
+    }//GEN-LAST:event_btnModoManualActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnModoAleatorio;
+    private javax.swing.JButton btnModoManual;
     // End of variables declaration//GEN-END:variables
 }

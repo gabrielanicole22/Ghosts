@@ -13,6 +13,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author Gabriela Mejia
  */
 public class Juego extends javax.swing.JFrame {
+
     /**
      * Creates new form Juego
      */
@@ -21,14 +22,14 @@ public class Juego extends javax.swing.JFrame {
     public Juego(SistemaUsuarios sistemaUsuarios, Stats stats, Usuario player1, Usuario player2, MenuInicio mainWindow) {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        gamePanel.setLayout(new GridLayout(1,1));
+        gamePanel.setLayout(new GridLayout(1, 1));
         gamePanel.setMinimumSize(new Dimension(800, 800));
-        tablero =new Tablero(
+        tablero = new Tablero(
                 fantasmasEliminadosPlayer1,
                 fantasmasEliminadosPlayer2,
                 sistemaUsuarios,
                 stats,
-                player1, 
+                player1,
                 player2,
                 sistemaUsuarios.usuarioIniciado.tutorialActivo,
                 this, mainWindow);
@@ -154,16 +155,18 @@ public class Juego extends javax.swing.JFrame {
         tablero.surrender();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-        public void setTurnoLabel(String text) {
+    public void setTurnoLabel(String text) {
         turnoLabel.setText(text);
     }
 
-    public void setPlayer1(String text){
+    public void setPlayer1(String text) {
         player1.setText(text);
     }
-    public void setPlayer2(String text){
+
+    public void setPlayer2(String text) {
         player2.setText(text);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -198,12 +201,13 @@ public class Juego extends javax.swing.JFrame {
                 sys.registrarUsuario("Gab", "mua");
                 sys.registrarUsuario("Tay", "mua");
                 sys.iniciarSesion("Gab", "mua");
-                
+
                 Usuario user1 = sys.getUsuario("Gab");
                 Usuario user2 = sys.getUsuario("Tay");
-                
+
                 user1.tutorialActivo = false;
-                new Juego(sys, new Stats(), user1, user2, null).setVisible(true);            }
+                new Juego(sys, new Stats(), user1, user2, null).setVisible(true);
+            }
         });
     }
 

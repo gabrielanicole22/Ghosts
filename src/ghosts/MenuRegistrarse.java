@@ -17,14 +17,13 @@ public class MenuRegistrarse extends javax.swing.JFrame {
     /**
      * Creates new form MenuRegistrarse
      */
-    
     SistemaUsuarios sistemaUsuarios;
     // Guardar la ventana del MenuPrincipal para poder cerrarla en caso de que se inicie sesion poder cerrarla.
     MenuPrincipal menuPrincipal = null;
-    
+
     public MenuRegistrarse(SistemaUsuarios sistemaUsuarios, MenuPrincipal menuPrincipal) {
         initComponents();
-        
+
         this.menuPrincipal = menuPrincipal;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         //this.setMinimumSize(new Dimension(800, 500));
@@ -100,43 +99,41 @@ public class MenuRegistrarse extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = userInput.getText().trim();
         String password = new String(passwordInput.getPassword());
-        
+
         // Recorrer la lista buscando espacios
         boolean validUsername = sistemaUsuarios.esUsuarioUnico(username);
-       
+
         if (!validUsername) {
             JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya está en uso. Intente con otro nombre de usuario.");
             return;
         }
-        
+
         // VERIFICAR QUE NO SE PUEDAN PONER ESPACIOS ENTRE MEDIO DEL USUARIO.
         validUsername = sistemaUsuarios.verificarEspaciosUsuario(username);
-        
+
         if (!validUsername) {
             JOptionPane.showMessageDialog(null, "El nombre de usuario no puede llevar espacios");
             return;
         }
-        
+
         // VERIFICAR LONGITUD DE LA CONTRASENA
-        
         if (password.length() != 5) {
             JOptionPane.showMessageDialog(null, "Ingrese una contraseña que sea de 5 caracteres.");
             return;
         }
-        
+
         // VERIFICAR QUE UN CAMPO NO ESTE VACIO
-        
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos.");
         }
-        
+
         sistemaUsuarios.registrarUsuario(username, password);
         JOptionPane.showMessageDialog(null, "Se ha registrado correctamente.");
-        
+
         // Devolver el usuario al menu principa;
         menuPrincipal.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

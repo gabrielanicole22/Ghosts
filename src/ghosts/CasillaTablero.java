@@ -13,25 +13,29 @@ import javax.swing.JLabel;
  * @author Gabriela Mejia
  */
 public class CasillaTablero {
-        JLabel label;
+
+    JLabel label;
     Personaje personajeActual;
     int row;
     int column;
-    
+
     public CasillaTablero(int row, int column, Personaje personajeActual) {
         this.label = new JLabel();
         this.row = row;
         this.column = column;
         this.personajeActual = personajeActual;
-                
+        this.label = new JLabel("[" + row + ", " + column + "]"); // Default label
+
         label.setBorder(BorderFactory.createLineBorder(Color.pink));
     }
-       
+
     public void highlightMove(boolean activar) {
         if (activar) {
             label.setBackground(Color.green);
             label.setOpaque(true);
-        } else label.setOpaque(false);
+        } else {
+            label.setOpaque(false);
+        }
     }
 
     public int getRow() {
@@ -41,22 +45,21 @@ public class CasillaTablero {
     public int getColumn() {
         return column;
     }
-    
+
     public void setPersonaje(Personaje personaje) {
         personajeActual = personaje;
         if (personaje == null) {
             label.setText("");
             label.setIcon(null);
-        }
-        else {
+        } else {
             if (personajeActual.icono != null) {
                 label.setIcon(personajeActual.icono);
-            }
-            else
+            } else {
                 label.setText(personajeActual.nombre);
+            }
         }
     }
-    
+
     public void esconderCasilla(boolean esconder) {
         if (esconder) {
             if (personajeActual.iconOculto != null) {
@@ -69,18 +72,19 @@ public class CasillaTablero {
         } else {
             if (personajeActual.icono != null) {
                 label.setIcon(personajeActual.icono);
-            }
-            else
+            } else {
                 label.setText(personajeActual.nombre);
+            }
         }
     }
-    
+
     public void setSelected(boolean selected) {
         if (selected) {
             label.setBackground(Color.pink);
             label.setOpaque(true);
             label.repaint();
-        } else
+        } else {
             label.setOpaque(false);
-    }   
+        }
+    }
 }

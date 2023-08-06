@@ -82,10 +82,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         new MenuLogin(sistemaUsuarios, this).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-    
+
     public void setSistemaUsuarios(SistemaUsuarios sistema) {
         sistemaUsuarios = sistema;
     }
+
     /**
      * @param args the command line arguments
      */

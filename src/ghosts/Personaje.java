@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 
 public class Personaje {
+
     ImageIcon icono;
     String nombre;
     int rango;
@@ -24,19 +25,19 @@ public class Personaje {
     boolean posicionado = false;
     ImageIcon iconOculto;
     Usuario usuario;
-    
+
     public Personaje(String nombre, int rango, boolean Player1, String iconPath) {
-       this.nombre = nombre;
-       this.rango = rango;
-       this.esPlayer1 = Player1;
+        this.nombre = nombre;
+        this.rango = rango;
+        this.esPlayer1 = Player1;
 
         try {
-           Image resizedImg = resizeImage(ImageIO.read(new File("src/Icons/ghost.png")), 52, 52);
-           iconOculto = new ImageIcon(resizedImg);
+            Image resizedImg = resizeImage(ImageIO.read(new File("src/Icons/ghost.png")), 52, 52);
+            iconOculto = new ImageIcon(resizedImg);
         } catch (Exception e) {
             iconOculto = null;
         }
-       try {
+        try {
             Image newImg = resizeImage(ImageIO.read(new File(iconPath)), 52, 52);
             icono = new ImageIcon(newImg);
         } catch (Exception e) {
@@ -44,18 +45,18 @@ public class Personaje {
         }
         loadIcon();
     }
-    
+
     private void loadIcon() {
         String filename;
-            filename = "src/Icons/" + nombre.replace(" ", "") + ".png";
-        try {            
+        filename = "src/Icons/" + nombre.replace(" ", "") + ".png";
+        try {
             Image newImg = resizeImage(ImageIO.read(new File(filename)), 52, 52);
             icono = new ImageIcon(newImg);
         } catch (Exception e) {
             icono = null;
         }
     }
-    
+
     private Image resizeImage(Image img, int w, int h) {
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImg.createGraphics();
@@ -65,10 +66,10 @@ public class Personaje {
 
         return resizedImg;
     }
-    
+
     public static ArrayList<Personaje> getGhostsPlayer1() {
         ArrayList<Personaje> personajes = new ArrayList<Personaje>();
-        
+
         if (Usuario.ModoNormal) {
             // Add 8 Personajes if ModoNormal is true
             personajes.add(new Personaje("malo", 1, true, null));
@@ -85,22 +86,21 @@ public class Personaje {
             personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
-        }
-        else if (Usuario.ModoGenius) {
+        } else if (Usuario.ModoGenius) {
             // Add 4 Personajes if ModoExpert is true
             personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
             personajes.add(new Personaje("fake", 0, true, null));
             personajes.add(new Personaje("fake", 10, true, null));
             personajes.add(new Personaje("fake", 10, true, null));
-            personajes.add(new Personaje("fake", 10, true, null));            
+            personajes.add(new Personaje("fake", 10, true, null));
         }
         return personajes;
     }
-    
+
     public static ArrayList<Personaje> getGhostsPlayer2() {
         ArrayList<Personaje> personajes = new ArrayList<Personaje>();
-        
+
         if (Usuario.ModoNormal) {
             // Add 8 Personajes if ModoNormal is true
             personajes.add(new Personaje("malo", 3, false, null));
@@ -117,15 +117,14 @@ public class Personaje {
             personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
-        }
-        else if (Usuario.ModoGenius) {
+        } else if (Usuario.ModoGenius) {
             // Add 4 Personajes if ModoExpert is true
             personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
             personajes.add(new Personaje("fake", 0, false, null));
             personajes.add(new Personaje("fake", 0, false, null));
             personajes.add(new Personaje("fake", 0, false, null));
-            personajes.add(new Personaje("fake", 0, false, null));            
+            personajes.add(new Personaje("fake", 0, false, null));
         }
         return personajes;
     }

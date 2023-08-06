@@ -18,7 +18,7 @@ public class VentanaCombate extends javax.swing.JPanel {
     public VentanaCombate(Personaje atacante, Personaje defensor, int ganaAtacante) {
         initComponents();
         empateLabel.setVisible(false);
-        
+
         // Poner imágenes
         jLabel1.setIcon(atacante.icono);
         defensorIcon.setIcon(defensor.icono);

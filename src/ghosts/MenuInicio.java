@@ -18,18 +18,19 @@ public class MenuInicio extends javax.swing.JFrame {
     private Usuario usuario;
     SistemaUsuarios sistemaUsuarios;
     Stats stats = new Stats();
-    
+
     public MenuInicio(SistemaUsuarios sistemaUsuarios) {
         initComponents();
         this.sistemaUsuarios = sistemaUsuarios;
         usuario = sistemaUsuarios.getUsuarioActual();
         setResizable(false);
-        habilitarBotonPartidaNueva();   
+        habilitarBotonPartidaNueva();
     }
+
     public void setStats(Stats stats) {
         this.stats = stats;
     }
-        
+
     private void habilitarBotonPartidaNueva() {
         Usuario[] usuarios = sistemaUsuarios.getUsuariosActivos();
         boolean habilitar = usuarios.length > 1;;
@@ -39,12 +40,12 @@ public class MenuInicio extends javax.swing.JFrame {
     public void setSistemaUsuarios(SistemaUsuarios sistemaUsuarios) {
         this.sistemaUsuarios = sistemaUsuarios;
     }
-    
-    
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
         //mostrarInformacionUsuario();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,7 +155,7 @@ public class MenuInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         Configuracion config = new Configuracion(sistemaUsuarios, this);
         config.setUsuario(usuario);
-        config.setVisible(true);        
+        config.setVisible(true);
     }//GEN-LAST:event_btnConfigActionPerformed
 
     private void btnMiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMiPerfilActionPerformed

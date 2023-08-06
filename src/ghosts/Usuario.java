@@ -11,18 +11,21 @@ import java.util.ArrayList;
  * @author Gabriela Mejía
  */
 public class Usuario {
+
     private String usuario;
     private String contrasena;
     private double puntos = 0.0;
     int partidasBuenos = 0;
     int partidasMalos = 0;
-    boolean tutorialActivo = false; // REPRESENTA SI EL MODO TUTORIAL ESTA ACTIVADO O NO.
+    boolean tutorialActivo = false;
     static boolean ModoNormal = true;
     static boolean ModoExpert = false;
     static boolean ModoGenius = false;
+    static boolean EsModoAleatorio = false;
+    static boolean EsModoManual = true;
     
     ArrayList<Partida> partidasJugadas;
-  
+
     public Usuario(String usuario, String contrasena) {
         this.partidasJugadas = new ArrayList<Partida>();
         this.usuario = usuario.trim();
@@ -45,10 +48,10 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         if (!contrasena.trim().isEmpty()) {
-            this.contrasena = contrasena.trim();        
+            this.contrasena = contrasena.trim();
         }
     }
-    
+
     public void addPartida(Partida partida) {
         partidasJugadas.add(partida);
         puntos += partida.puntosGanados;
@@ -57,15 +60,18 @@ public class Usuario {
     public double getPuntos() {
         return puntos;
     }
-    
+
     public ArrayList<Partida> getPartidas() {
         return partidasJugadas;
     }
+
     /**
-     * Verifica que el nombre de usuario y la contraseña especificada sea igual a a guardada por el usuario.
-     * @return 
+     * Verifica que el nombre de usuario y la contraseña especificada sea igual
+     * a a guardada por el usuario.
+     *
+     * @return
      */
     public boolean validarCredenciales(String usuario, String contrasena) {
         return (this.usuario.equals(usuario) && this.contrasena.equals(contrasena));
-    }    
+    }
 }

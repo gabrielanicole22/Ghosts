@@ -17,22 +17,23 @@ public class Dificultad extends javax.swing.JFrame {
     private Usuario usuario;
     MenuInicio ventanaPrincipal;
     Configuracion config;
+
     public Dificultad(SistemaUsuarios sistemaUsuarios, Configuracion config, Usuario usuario) {
         initComponents();
         this.sistemaUsuarios = sistemaUsuarios;
-        this.config=config;
-        this.usuario=usuario;
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
+        this.config = config;
+        this.usuario = usuario;
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
     private void actualizarUsuario() {
         sistemaUsuarios.actualizarUsuario(usuario);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,8 +101,8 @@ public class Dificultad extends javax.swing.JFrame {
     private void btnNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalActionPerformed
         // TODO add your handling code here:
         Usuario.ModoNormal = true;
-        Usuario.ModoExpert=false;
-        Usuario.ModoGenius=false;
+        Usuario.ModoExpert = false;
+        Usuario.ModoGenius = false;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
@@ -110,21 +111,21 @@ public class Dificultad extends javax.swing.JFrame {
     private void btnExpertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpertActionPerformed
         // TODO add your handling code here:
         Usuario.ModoNormal = false;
-        Usuario.ModoExpert=true;
-        Usuario.ModoGenius=false;        
+        Usuario.ModoExpert = true;
+        Usuario.ModoGenius = false;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
-        this.dispose();        
+        this.dispose();
     }//GEN-LAST:event_btnExpertActionPerformed
 
     private void btnGeniusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeniusActionPerformed
         // TODO add your handling code here:
         Usuario.ModoNormal = false;
-        Usuario.ModoExpert=false;
-        Usuario.ModoGenius=true;        
+        Usuario.ModoExpert = false;
+        Usuario.ModoGenius = true;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
-        this.dispose();        
+        this.dispose();
     }//GEN-LAST:event_btnGeniusActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
