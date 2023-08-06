@@ -8,7 +8,7 @@ import java.awt.Color;
 
 /**
  *
- * @author User
+ * @author Gabriela Mejía
  */
 public class VentanaCombate extends javax.swing.JPanel {
 
@@ -97,7 +97,7 @@ public class VentanaCombate extends javax.swing.JPanel {
                     .addComponent(defensorLabel))
                 .addGap(36, 36, 36)
                 .addComponent(empateLabel)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

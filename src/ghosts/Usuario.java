@@ -11,12 +11,16 @@ import java.util.ArrayList;
  * @author Gabriela Mejía
  */
 public class Usuario {
-        private String usuario;
+    private String usuario;
     private String contrasena;
     private double puntos = 0.0;
     int partidasBuenos = 0;
     int partidasMalos = 0;
     boolean tutorialActivo = false; // REPRESENTA SI EL MODO TUTORIAL ESTA ACTIVADO O NO.
+    static boolean ModoNormal = true;
+    static boolean ModoExpert = false;
+    static boolean ModoGenius = false;
+    
     ArrayList<Partida> partidasJugadas;
   
     public Usuario(String usuario, String contrasena) {

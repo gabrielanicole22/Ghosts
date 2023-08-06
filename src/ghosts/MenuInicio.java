@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author User
+ * @author Gabriela Mejía
  */
 public class MenuInicio extends javax.swing.JFrame {
 
@@ -152,6 +152,9 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
         // TODO add your handling code here:
+        Configuracion config = new Configuracion(sistemaUsuarios, this);
+        config.setUsuario(usuario);
+        config.setVisible(true);        
     }//GEN-LAST:event_btnConfigActionPerformed
 
     private void btnMiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMiPerfilActionPerformed

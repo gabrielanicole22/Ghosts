@@ -9,13 +9,12 @@ package ghosts;
  * @author Gabriela Mejía
  */
 public class Stats {
+    
     private static int partidasJugadas = 0;
     
     public static int getPartidasJugadas() {
         return partidasJugadas;
     }
-    
-
     
     void addPartida(boolean gananHeroes) {
         partidasJugadas++;

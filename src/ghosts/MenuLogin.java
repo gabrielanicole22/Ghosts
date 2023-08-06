@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author User
+ * @author Gabriela Mejía
  */
 public class MenuLogin extends javax.swing.JFrame {
 

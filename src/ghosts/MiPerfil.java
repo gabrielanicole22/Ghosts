@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author User
+ * @author Gabriela Mejía
  */
 public class MiPerfil extends javax.swing.JFrame {
 

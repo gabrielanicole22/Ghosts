@@ -23,10 +23,10 @@ public class Tablero extends JPanel{
     boolean esTutorial;
     boolean hayRetirado = false;
     boolean juegoTerminado = false;
-    private int GhostsMalosPlayer1 = 4;
-    private int GhostsBuenosPlayer1 = 4;
-    private int GhostsMalosPlayer2 = 4;
-    private int GhostsBuenosPlayer2 = 4;
+    private int GhostsMalosPlayer1;
+    private int GhostsBuenosPlayer1;
+    private int GhostsMalosPlayer2;
+    private int GhostsBuenosPlayer2;
     
     ArrayList<Personaje> FantasmasInicialesPlayer1 = Personaje.getGhostsPlayer1();
     ArrayList<Personaje> FantasmasInicialesPlayer2 = Personaje.getGhostsPlayer2();
@@ -448,10 +448,23 @@ private boolean esMovimientoValido(int row, int column) {
     }
 
 public void mostrarPersonajesEliminados() {
+    if (Usuario.ModoNormal){
     GhostsMalosPlayer1 = 4;
     GhostsMalosPlayer2 = 4;
     GhostsBuenosPlayer1 = 4;
-    GhostsBuenosPlayer2 = 4;
+    GhostsBuenosPlayer2 = 4;}
+    else if (Usuario.ModoExpert){
+    GhostsMalosPlayer1 = 2;
+    GhostsMalosPlayer2 = 2;
+    GhostsBuenosPlayer1 = 2;
+    GhostsBuenosPlayer2 = 2;
+    }
+    else if (Usuario.ModoGenius){
+    GhostsMalosPlayer1 = 1;
+    GhostsMalosPlayer2 = 1;
+    GhostsBuenosPlayer1 = 1;
+    GhostsBuenosPlayer2 = 1;
+    }
     String mensajeVictoria = " ";
     
     for (Personaje personaje : FantasmasEliminadosPlayer1) {
@@ -512,7 +525,7 @@ public void mostrarPersonajesEliminados() {
             Personaje personajeActual = FantasmasInicialesPlayer1.get(i);
             int columnaAleatoria;
             int filaAleatoria;
-            if (personajeActual.rango == 2 || personajeActual.rango==1) {
+            if (personajeActual.rango == 2 || personajeActual.rango==1 || personajeActual.rango==10) {
                 int[] filas = {4, 5};
                 filaAleatoria = filas[random.nextInt(filas.length)]; // Elegir entre filas 4 y 5
                 // Elegir columna aleatoria hasta que esté libre ese espacio y no sea una esquina
@@ -533,7 +546,7 @@ public void mostrarPersonajesEliminados() {
             int columnaAleatoria;
             int filaAleatoria;
 
-            if (personajeActual.rango==3|| personajeActual.rango==4) {
+            if (personajeActual.rango==3|| personajeActual.rango==4||personajeActual.rango==0) {
                 int[] filas = {0, 1};
                 filaAleatoria = filas[random.nextInt(filas.length)]; // Elegir entre filas 0 y 1
 

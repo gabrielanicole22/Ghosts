@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 
 /**
  *
- * @author User
+ * @author Gabriela Mejía
  */
 public class PartidaNueva extends javax.swing.JFrame {
     SistemaUsuarios sistemaUsuarios;

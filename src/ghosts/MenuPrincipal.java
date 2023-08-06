@@ -6,7 +6,7 @@ package ghosts;
 
 /**
  *
- * @author User
+ * @author Gabriela Mejía
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
