@@ -24,7 +24,7 @@ public class CasillaTablero {
         this.row = row;
         this.column = column;
         this.personajeActual = personajeActual;
-        this.label = new JLabel("[" + row + ", " + column + "]"); // Default label
+        //this.label = new JLabel("[" + row + ", " + column + "]"); // Default label
 
         label.setBorder(BorderFactory.createLineBorder(Color.pink));
     }

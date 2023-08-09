@@ -177,84 +177,86 @@ public class Tablero extends JPanel {
         setVisible(true);
         repaint();
     }
+    
+    
 private boolean player1FinishedPositioning = false;
 private boolean player2FinishedPositioning = false;
 private boolean juegoComenzado = false;
-private void posicionarManualmente() {
-    // Agregar el manejador de eventos de clic en las etiquetas para el posicionamiento manual
-    MouseAdapter mouseAdapter = new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if (!Usuario.EsModoAleatorio && !juegoTerminado) {
-                JLabel label = (JLabel) e.getSource();
-                for (int i = 0; i < 6; i++) {
-                    for (int j = 0; j < 6; j++) {
-                        if (casillas[i][j].label == label) {
-                            if (!juegoComenzado) {
-                                // Verificar si la casilla está ocupada y mostrar mensaje de error
-                                if (casillas[i][j].personajeActual != null) {
-                                    JOptionPane.showMessageDialog(null, "Casilla ya ocupada. Elige otra casilla para posicionar tu personaje.");
-                                    return;
-                                }
 
-                                if (!player1FinishedPositioning) {
-                                    // Posicionamiento manual para el jugador 1
-                                    if (!FantasmasInicialesPlayer1.isEmpty()) {
-                                        if (i >= 4 && i <= 5 && j != 0 && j != 5) {
-                                            Personaje personaje = FantasmasInicialesPlayer1.remove(0);
-                                            personaje.posicionado = true;
-                                            casillas[i][j].setPersonaje(personaje);
-                                            if (FantasmasInicialesPlayer1.isEmpty()) {
-                                                player1FinishedPositioning = true;
-                                                esconderPersonajes(); // Esconder personajes del jugador 1
-                                                JOptionPane.showMessageDialog(null, "Jugador 1 ha colocado todos sus fantasmas. Es el turno del jugador 2 para posicionar sus fantasmas.");
-                                            }
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "Jugador 1 solo puede posicionar fantasmas en las filas 4 y 5, excepto las esquinas.");
-                                            return;
-                                        }
-                                    }
-                                } else {
-                                    // Posicionamiento manual para el jugador 2
-                                    if (!FantasmasInicialesPlayer2.isEmpty()) {
-                                        if (i >= 0 && i <= 1 && j != 0 && j != 5) {
-                                            Personaje personaje = FantasmasInicialesPlayer2.remove(0);
-                                            personaje.posicionado = true;
-                                            casillas[i][j].setPersonaje(personaje);
-                                            if (FantasmasInicialesPlayer2.isEmpty()) {
-                                                player2FinishedPositioning = true;
-                                                esconderPersonajes(); // Esconder personajes del jugador 1
-                                                borrarResaltadoMovimientos();
-                                                resaltarZonasProhibidas();
-                                                hayCasillaSeleccionada = false;
-                                                mostrarMensajeInicial();
-                                                JOptionPane.showMessageDialog(null, "Ambos jugadores han colocado sus fantasmas. La partida puede comenzar.");
-                                                juegoComenzado = true; // Marcar el juego como comenzado
-                                            }
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "Jugador 2 solo puede posicionar fantasmas en las filas 0 y 1, excepto las esquinas.");
-                                            return;
-                                        }
-                                    }
-                                }
-                            } else {
+private int obtenerCoordenada(String mensaje) {
+    int coordenada = -1;
+    while (true) {
+        try {
+            String input = JOptionPane.showInputDialog(mensaje);
+            coordenada = Integer.parseInt(input);
+            if (coordenada >= 0 && coordenada <= 5) {
+                break;
+            } else {
+                JOptionPane.showMessageDialog(null, "Coordenada fuera de rango. Ingresa un valor entre 0 y 5.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingresa un valor numérico válido.");
+        }
+    }
+    return coordenada;
+}
+public void posicionarManualmente() {
+    if (!Usuario.EsModoAleatorio) {
+        if (!juegoComenzado) {
+            if (!player1FinishedPositioning) {
+                // Posicionamiento manual para el jugador 1
+                while (!FantasmasInicialesPlayer1.isEmpty()) {
+                    int fila = obtenerCoordenada("Jugador 1, posiciona un fantasma. Ingresa la fila (0-5):");
+                    int columna = obtenerCoordenada("Ingresa la columna (0-5):");
+                    if (casillas[fila][columna].personajeActual != null) {
+                        JOptionPane.showMessageDialog(null, "La casilla seleccionada ya está ocupada por un personaje. Elige otra casilla.");
+                        continue;  // Vuelve a pedir las coordenadas
+                    }
+                    if ((fila >= 4 && fila <= 5) && (columna != 0 && columna != 5)) {
+                        Personaje personaje = FantasmasInicialesPlayer1.remove(0);
+                        personaje.posicionado = true;
+                        casillas[fila][columna].setPersonaje(personaje);
 
-                            }
+                        if (FantasmasInicialesPlayer1.isEmpty()) {
+                            player1FinishedPositioning = true;
+                            esconderPersonajes(); // Esconder personajes del jugador 1
+                            JOptionPane.showMessageDialog(null, "Jugador 1 ha colocado todos sus fantasmas. Es el turno del jugador 2 para posicionar sus fantasmas.");
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Coordenadas inválidas. Jugador 1 solo puede posicionar fantasmas en las filas 4 y 5, excepto las esquinas.");
+                    }
+                }
+            } else if (!player2FinishedPositioning) {
+                // Posicionamiento manual para el jugador 2
+                while (!FantasmasInicialesPlayer2.isEmpty()) {
+                    int fila = obtenerCoordenada("Jugador 2, posiciona un fantasma. Ingresa la fila (0-5):");
+                    int columna = obtenerCoordenada("Ingresa la columna (0-5):");
+                        if (casillas[fila][columna].personajeActual != null) {
+                            JOptionPane.showMessageDialog(null, "La casilla seleccionada ya está ocupada por un personaje. Elige otra casilla.");
+                            continue;  // Vuelve a pedir las coordenadas
+                        }
+                    if ((fila >= 0 && fila <= 1) && (columna != 0 && columna != 5)) {
+                        Personaje personaje = FantasmasInicialesPlayer2.remove(0);
+                        personaje.posicionado = true;
+                        casillas[fila][columna].setPersonaje(personaje);
+
+                        if (FantasmasInicialesPlayer2.isEmpty()) {
+                            if (player1FinishedPositioning && player2FinishedPositioning) {
+                                turnoPlayer1 = !turnoPlayer1;
+                            }
+                            player2FinishedPositioning = true;
+                            esconderPersonajes(); // Esconder personajes del jugador 2
+                            JOptionPane.showMessageDialog(null, "Ambos jugadores han colocado sus fantasmas. La partida puede comenzar.");
+                            juegoComenzado = true; // Marcar el juego como comenzado
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Coordenadas inválidas. Jugador 2 solo puede posicionar fantasmas en las filas 0 y 1, excepto las esquinas.");
                     }
                 }
             }
         }
-    };
-
-    // Agregar el manejador de eventos a las etiquetas
-    for (int row = 0; row < 6; row++) {
-        for (int column = 0; column < 6; column++) {
-            casillas[row][column].label.addMouseListener(mouseAdapter);
-        }
     }
 }
-
     
     private boolean esMovimientoValido(int row, int column) {
         int currentRow = casillaSeleccionada.row;
@@ -306,29 +308,18 @@ private void posicionarManualmente() {
             // Mostrar mensaje de victoria
             if (turnoPlayer1) {
                 JOptionPane.showMessageDialog(null, Player1.getUsuario() + " ha ganado. Logró sacar un fantasma bueno.");
+                            gameWindow.dispose();
+
             } else {
                 JOptionPane.showMessageDialog(null, Player2.getUsuario() + " ha ganado. Logró sacar un fantasma bueno.");
-            }
-        }
+                            gameWindow.dispose();
 
+            }
+            return true;
+        }
+        
         // El movimiento es válido solo si es ortogonal, no está en un espacio restringido (zonas prohibidas) y no tiene otra ficha del mismo bando
         return isOrthogonal && !isRestricted && !hasCharacter;
-    }
-
-    private boolean tieneMovimientosValidos(boolean bandoPlayer1) {
-        // Recorrer el array en busca de fichas que se pueden mover
-        for (int r = 0; r < 6; r++) {
-            for (int c = 0; c < 6; c++) {
-                CasillaTablero casillaActual = casillas[r][c];
-                if (casillaActual.personajeActual == null) {
-                    continue;
-                }
-                if (casillaActual.personajeActual.esPlayer1 == bandoPlayer1 && casillaActual.personajeActual.rango > 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     private void resaltarSiEsMovimientoValido() {
