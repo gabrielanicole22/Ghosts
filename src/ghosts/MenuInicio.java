@@ -167,7 +167,7 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
         // TODO add your handling code here:
-        Reportes ranks = new Reportes(sistemaUsuarios, stats);
+        RankingReportes ranks = new RankingReportes(sistemaUsuarios, stats);
         ranks.setVisible(true);
     }//GEN-LAST:event_btnReportesActionPerformed
 
