@@ -166,8 +166,11 @@ public class Tablero extends JPanel {
                 casillas[row][column].label.addMouseListener(mouseAdapter);
             }
         }
+        
+        SwingUtilities.invokeLater(() -> {
+        });
         // Establecer posiciones iniciales
-        posicionarTodo();
+        posicionarFantasmas();
         resaltarZonasProhibidas();
         mostrarMensajeInicial(); // mostrar el turno inicial del jugador
 
@@ -206,7 +209,7 @@ public void posicionarManualmente() {
             if (!player1FinishedPositioning) {
                 // Posicionamiento manual para el jugador 1
                 while (!FantasmasInicialesPlayer1.isEmpty()) {
-                    int fila = obtenerCoordenada("Jugador 1, posiciona un fantasma. Ingresa la fila (0-5):");
+                    int fila = obtenerCoordenada(Player1.getUsuario()+", posiciona un fantasma. Ingresa la fila (0-5):");
                     int columna = obtenerCoordenada("Ingresa la columna (0-5):");
                     if (casillas[fila][columna].personajeActual != null) {
                         JOptionPane.showMessageDialog(null, "La casilla seleccionada ya está ocupada por un personaje. Elige otra casilla.");
@@ -220,16 +223,16 @@ public void posicionarManualmente() {
                         if (FantasmasInicialesPlayer1.isEmpty()) {
                             player1FinishedPositioning = true;
                             esconderPersonajes(); // Esconder personajes del jugador 1
-                            JOptionPane.showMessageDialog(null, "Jugador 1 ha colocado todos sus fantasmas. Es el turno del jugador 2 para posicionar sus fantasmas.");
+                            JOptionPane.showMessageDialog(null, Player1.getUsuario()+" ha colocado todos sus fantasmas. Es el turno del jugador 2 para posicionar sus fantasmas.");
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Coordenadas inválidas. Jugador 1 solo puede posicionar fantasmas en las filas 4 y 5, excepto las esquinas.");
+                        JOptionPane.showMessageDialog(null, "Coordenadas inválidas. "+Player1.getUsuario()+" solo puede posicionar fantasmas en las filas 4 y 5, excepto las esquinas.");
                     }
                 }
             } else if (!player2FinishedPositioning) {
                 // Posicionamiento manual para el jugador 2
                 while (!FantasmasInicialesPlayer2.isEmpty()) {
-                    int fila = obtenerCoordenada("Jugador 2, posiciona un fantasma. Ingresa la fila (0-5):");
+                    int fila = obtenerCoordenada(Player2.getUsuario()+", posiciona un fantasma. Ingresa la fila (0-5):");
                     int columna = obtenerCoordenada("Ingresa la columna (0-5):");
                         if (casillas[fila][columna].personajeActual != null) {
                             JOptionPane.showMessageDialog(null, "La casilla seleccionada ya está ocupada por un personaje. Elige otra casilla.");
@@ -250,7 +253,7 @@ public void posicionarManualmente() {
                             juegoComenzado = true; // Marcar el juego como comenzado
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Coordenadas inválidas. Jugador 2 solo puede posicionar fantasmas en las filas 0 y 1, excepto las esquinas.");
+                        JOptionPane.showMessageDialog(null, "Coordenadas inválidas. "+Player2.getUsuario()+" solo puede posicionar fantasmas en las filas 0 y 1, excepto las esquinas.");
                     }
                 }
             }
@@ -656,9 +659,5 @@ public void posicionarManualmente() {
         else {
             posicionarManualmente();
         }
-    }
-
-    public void posicionarTodo() {
-        posicionarFantasmas();
     }
 }

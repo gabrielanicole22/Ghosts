@@ -41,7 +41,7 @@ public class Juego extends javax.swing.JFrame {
         gamePanel.add(tablero);
         gamePanel.repaint();
         setVisible(true);
- SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
                 Thread.sleep(100); // Dar tiempo al formulario para mostrarse por completo
@@ -52,6 +52,7 @@ public class Juego extends javax.swing.JFrame {
         
         worker.execute(); // Ejecutar el SwingWorker
     }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,12 +76,14 @@ public class Juego extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
+        fantasmasEliminadosPlayer1.setEditable(false);
         fantasmasEliminadosPlayer1.setColumns(20);
         fantasmasEliminadosPlayer1.setRows(5);
         jScrollPane1.setViewportView(fantasmasEliminadosPlayer1);
 
+        fantasmasEliminadosPlayer2.setEditable(false);
         fantasmasEliminadosPlayer2.setColumns(20);
         fantasmasEliminadosPlayer2.setRows(5);
         jScrollPane2.setViewportView(fantasmasEliminadosPlayer2);

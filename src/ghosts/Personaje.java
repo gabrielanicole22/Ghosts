@@ -8,7 +8,6 @@ package ghosts;
  *
  * @author Gabriela Mejía
  */
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -71,23 +70,21 @@ public class Personaje {
         ArrayList<Personaje> personajes = new ArrayList<Personaje>();
 
         if (Usuario.ModoNormal) {
-            // Add 8 Personajes if ModoNormal is true
-            personajes.add(new Personaje("malo", 1, true, null));
-            personajes.add(new Personaje("malo", 1, true, null));
-            personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
+            personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
+            personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
+            personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
+
         } else if (Usuario.ModoExpert) {
-            // Add 4 Personajes if ModoExpert is true
-            personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
+            personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
         } else if (Usuario.ModoGenius) {
-            // Add 4 Personajes if ModoExpert is true
             personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
             personajes.add(new Personaje("fake", 0, true, null));
@@ -102,23 +99,20 @@ public class Personaje {
         ArrayList<Personaje> personajes = new ArrayList<Personaje>();
 
         if (Usuario.ModoNormal) {
-            // Add 8 Personajes if ModoNormal is true
-            personajes.add(new Personaje("malo", 3, false, null));
-            personajes.add(new Personaje("malo", 3, false, null));
-            personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
+            personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
+            personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
+            personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
         } else if (Usuario.ModoExpert) {
-            // Add 4 Personajes if ModoExpert is true
-            personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
+            personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
         } else if (Usuario.ModoGenius) {
-            // Add 4 Personajes if ModoExpert is true
             personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
             personajes.add(new Personaje("fake", 0, false, null));

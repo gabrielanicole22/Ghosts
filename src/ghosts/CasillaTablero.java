@@ -26,12 +26,12 @@ public class CasillaTablero {
         this.personajeActual = personajeActual;
         //this.label = new JLabel("[" + row + ", " + column + "]"); // Default label
 
-        label.setBorder(BorderFactory.createLineBorder(Color.pink));
+        label.setBorder(BorderFactory.createLineBorder(Color.WHITE));
     }
 
     public void highlightMove(boolean activar) {
         if (activar) {
-            label.setBackground(Color.green);
+            label.setBackground(Color.WHITE);
             label.setOpaque(true);
         } else {
             label.setOpaque(false);
@@ -80,7 +80,7 @@ public class CasillaTablero {
 
     public void setSelected(boolean selected) {
         if (selected) {
-            label.setBackground(Color.pink);
+            label.setBackground(Color.WHITE);
             label.setOpaque(true);
             label.repaint();
         } else {
