@@ -23,12 +23,27 @@ public class VentanaCombate extends javax.swing.JPanel {
         jLabel1.setIcon(atacante.icono);
         defensorIcon.setIcon(defensor.icono);
 
-        // El atacante siempre es el ganador
-        atacanteLabel.setText("GANADOR");
-        defensorLabel.setText("PERDEDOR");
+        if (ganaAtacante == 1) {
+            // El atacante siempre es el ganador, pero se aplican condiciones especiales
+            if ((atacante.rango == 0 || atacante.rango == 10) && (defensor.rango != 0 && defensor.rango != 10)) {
+                atacanteLabel.setText("PERDEDOR");
+                defensorLabel.setText("GANADOR");
+                defensorLabel.setForeground(Color.green);
+                atacanteLabel.setForeground(Color.red);
+            } else {
+                atacanteLabel.setText("GANADOR");
+                defensorLabel.setText("PERDEDOR");
+                atacanteLabel.setForeground(Color.green);
+                defensorLabel.setForeground(Color.red);
 
-        atacanteLabel.setForeground(Color.green);
-        defensorLabel.setForeground(Color.red);
+            }
+        } else {
+            // En caso contrario, el atacante no es el ganador, puedes ajustar esto según tu lógica
+            atacanteLabel.setText("PERDEDOR");
+            defensorLabel.setText("GANADOR");
+            defensorLabel.setForeground(Color.green);
+            atacanteLabel.setForeground(Color.red);
+        }
     }
 
     /**

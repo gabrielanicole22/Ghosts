@@ -116,12 +116,6 @@ public class MenuRegistrarse extends javax.swing.JFrame {
             return;
         }
 
-        // VERIFICAR LONGITUD DE LA CONTRASENA
-        if (password.length() != 5) {
-            JOptionPane.showMessageDialog(null, "Ingrese una contraseña que sea de 5 caracteres.");
-            return;
-        }
-
         // VERIFICAR QUE UN CAMPO NO ESTE VACIO
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos.");

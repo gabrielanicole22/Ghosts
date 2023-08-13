@@ -29,7 +29,8 @@ public class Juego extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         gamePanel.setLayout(new GridLayout(1, 1));
-        gamePanel.setPreferredSize(new Dimension(800, 800));        tablero = new Tablero(
+        gamePanel.setPreferredSize(new Dimension(800, 800));        
+        tablero = new Tablero(
                 fantasmasEliminadosPlayer1,
                 fantasmasEliminadosPlayer2,
                 sistemaUsuarios,
@@ -41,6 +42,7 @@ public class Juego extends javax.swing.JFrame {
         gamePanel.add(tablero);
         gamePanel.repaint();
         setVisible(true);
+        tablero.TerminardeCargar();
          SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {

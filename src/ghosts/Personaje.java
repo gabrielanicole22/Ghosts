@@ -87,7 +87,7 @@ public class Personaje {
         } else if (Usuario.ModoGenius) {
             personajes.add(new Personaje("malo", 1, true, null));
             personajes.add(new Personaje("bueno", 2, true, null));
-            personajes.add(new Personaje("fake", 0, true, null));
+            personajes.add(new Personaje("fake", 10, true, null));
             personajes.add(new Personaje("fake", 10, true, null));
             personajes.add(new Personaje("fake", 10, true, null));
             personajes.add(new Personaje("fake", 10, true, null));

@@ -21,8 +21,8 @@ public class Usuario {
     static boolean ModoNormal = true;
     static boolean ModoExpert = false;
     static boolean ModoGenius = false;
-    static boolean EsModoAleatorio = false;
-    static boolean EsModoManual = true;
+    static boolean EsModoAleatorio = true;
+    static boolean EsModoManual = false;
     
     ArrayList<Partida> partidasJugadas;
 

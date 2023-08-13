@@ -184,14 +184,22 @@ public class MiPerfil extends javax.swing.JFrame {
 
     private void btnCambiarPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarPasswordActionPerformed
         // TODO add your handling code here:
+        CambiarPassword changePassword = new CambiarPassword(sistemaUsuarios, this);
+        changePassword.setUsuario(usuario);
+        changePassword.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCambiarPasswordActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnEliminarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCuentaActionPerformed
         // TODO add your handling code here:
+        EliminarCuenta delete = new EliminarCuenta(sistemaUsuarios, ventanaPrincipal);
+        delete.setUsuario(usuario);
+        delete.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEliminarCuentaActionPerformed
 
