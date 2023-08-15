@@ -27,4 +27,8 @@ public class Partida {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy HH:mm");
         this.fecha = formato.format(fechaObj);
     }
+    
+    public double getPuntos(){
+        return puntosGanados;
+    }
 }

@@ -35,6 +35,7 @@ public class MiPerfil extends javax.swing.JFrame {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
         mostrarInformacionUsuario();
+        mostrarInformacionUsuarioo();
     }
 
     public void cargarPartidas() {
@@ -61,11 +62,20 @@ public class MiPerfil extends javax.swing.JFrame {
             labelUsuario.setText(nombreUsuario);
         }
     }
+    public void mostrarInformacionUsuarioo() {
+        if (usuario != null) {
+            double puntosTotales = usuario.getPuntos();
+            Labelpuntos.setText(String.valueOf(puntosTotales));
+        }
+    }
+    
 
     public void mostrarMiPerfil(String nombre) {
         labelUsuario.setText(nombre);
     }
-
+    public void mostrarMiPutno(double puntos) {
+            Labelpuntos.setText(String.valueOf(puntos));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,43 +85,25 @@ public class MiPerfil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         labelUsuario = new javax.swing.JLabel();
-        btnCambiarPassword = new javax.swing.JButton();
-        btnRegresar = new javax.swing.JButton();
-        btnEliminarCuenta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         matchTable = new javax.swing.JTable();
+        btnCambiar = new javax.swing.JLabel();
+        btnBack = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Labelpuntos = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Mi Perfil");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Usuario:");
-
-        labelUsuario.setText("jLabel3");
-
-        btnCambiarPassword.setText("CAMBIAR PASSWORD");
-        btnCambiarPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCambiarPasswordActionPerformed(evt);
-            }
-        });
-
-        btnRegresar.setText("REGRESAR");
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarActionPerformed(evt);
-            }
-        });
-
-        btnEliminarCuenta.setText("ELIMINAR CUENTA");
-        btnEliminarCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarCuentaActionPerformed(evt);
-            }
-        });
+        labelUsuario.setText("usuario");
+        jPanel1.add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
 
         matchTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,88 +123,96 @@ public class MiPerfil extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(matchTable);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 586, 300));
+
+        btnCambiar.setText("CAMBIAR PASSWORD");
+        btnCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCambiarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, -1, -1));
+
+        btnBack.setText("REGRESAR");
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, -1));
+
+        jLabel2.setText("Usuario:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
+
+        jLabel3.setText("Puntos Totales:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
+
+        Labelpuntos.setText("puntos");
+        jPanel1.add(Labelpuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 84, 16));
+
+        jLabel1.setText("Mi Perfil");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
+
+        btnEliminar.setText("ELIMINAR CUENTA");
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 600));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCambiarPassword)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelUsuario)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(108, 108, 108)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addComponent(btnRegresar)
-                                .addGap(98, 98, 98)
-                                .addComponent(btnEliminarCuenta))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(103, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(labelUsuario))
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCambiarPassword)
-                    .addComponent(btnRegresar)
-                    .addComponent(btnEliminarCuenta))
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCambiarPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarPasswordActionPerformed
+    private void btnCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarMouseClicked
         // TODO add your handling code here:
-        CambiarPassword changePassword = new CambiarPassword(sistemaUsuarios, this);
+                CambiarPassword changePassword = new CambiarPassword(sistemaUsuarios, this);
         changePassword.setUsuario(usuario);
         changePassword.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnCambiarPasswordActionPerformed
+    }//GEN-LAST:event_btnCambiarMouseClicked
 
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnRegresarActionPerformed
+                this.dispose();
 
-    private void btnEliminarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCuentaActionPerformed
+    }//GEN-LAST:event_btnBackMouseClicked
+
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
         // TODO add your handling code here:
-        EliminarCuenta delete = new EliminarCuenta(sistemaUsuarios, ventanaPrincipal);
+                EliminarCuenta delete = new EliminarCuenta(sistemaUsuarios, ventanaPrincipal);
         delete.setUsuario(usuario);
         delete.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnEliminarCuentaActionPerformed
+    }//GEN-LAST:event_btnEliminarMouseClicked
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCambiarPassword;
-    private javax.swing.JButton btnEliminarCuenta;
-    private javax.swing.JButton btnRegresar;
+    private javax.swing.JLabel Labelpuntos;
+    private javax.swing.JLabel btnBack;
+    private javax.swing.JLabel btnCambiar;
+    private javax.swing.JLabel btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JTable matchTable;

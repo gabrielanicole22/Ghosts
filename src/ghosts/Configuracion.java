@@ -46,66 +46,70 @@ public class Configuracion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnDificultad = new javax.swing.JButton();
-        btnModo = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnDifi = new javax.swing.JLabel();
+        btnMJuego = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnDificultad.setText("DIFICULTAD");
-        btnDificultad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDificultadActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnModo.setText("MODO DE JUEGO");
-        btnModo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModoActionPerformed(evt);
+        btnDifi.setForeground(new java.awt.Color(255, 255, 255));
+        btnDifi.setText("Dificultad");
+        btnDifi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDifiMouseClicked(evt);
             }
         });
+        jPanel1.add(btnDifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, -1));
+
+        btnMJuego.setForeground(new java.awt.Color(255, 255, 255));
+        btnMJuego.setText("Modo de Juego");
+        btnMJuego.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMJuegoMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnMJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/confi.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnModo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(154, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(btnDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnModo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDificultadActionPerformed
+    private void btnDifiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDifiMouseClicked
         // TODO add your handling code here:
-        Dificultad dificultad = new Dificultad(sistemaUsuarios, this, usuario);
+                Dificultad dificultad = new Dificultad(sistemaUsuarios, this, usuario);
         dificultad.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnDificultadActionPerformed
+    }//GEN-LAST:event_btnDifiMouseClicked
 
-    private void btnModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoActionPerformed
+    private void btnMJuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMJuegoMouseClicked
         // TODO add your handling code here:
-        ModoDeJuego modo = new ModoDeJuego(sistemaUsuarios, this, usuario);
+                ModoDeJuego modo = new ModoDeJuego(sistemaUsuarios, this, usuario);
         modo.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnModoActionPerformed
+    }//GEN-LAST:event_btnMJuegoMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDificultad;
-    private javax.swing.JButton btnModo;
+    private javax.swing.JLabel btnDifi;
+    private javax.swing.JLabel btnMJuego;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -43,71 +43,74 @@ public class ModoDeJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnModoAleatorio = new javax.swing.JButton();
-        btnModoManual = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnAleatorio = new javax.swing.JLabel();
+        btnManual = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnModoAleatorio.setText("MODO ALEATORIO");
-        btnModoAleatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModoAleatorioActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnModoManual.setText("MODO MANUAL");
-        btnModoManual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModoManualActionPerformed(evt);
+        btnAleatorio.setForeground(new java.awt.Color(255, 255, 255));
+        btnAleatorio.setText("Modo Aleatorio");
+        btnAleatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAleatorioMouseClicked(evt);
             }
         });
+        jPanel1.add(btnAleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
+
+        btnManual.setForeground(new java.awt.Color(255, 255, 255));
+        btnManual.setText("Modo Manual");
+        btnManual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnManualMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/confi2.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(139, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnModoAleatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModoManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(129, 129, 129))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(btnModoAleatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnModoManual, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnModoAleatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoAleatorioActionPerformed
+    private void btnManualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManualMouseClicked
         // TODO add your handling code here:
-        Usuario.EsModoAleatorio = true;
-        Usuario.EsModoManual = false;
-        actualizarUsuario();
-        config.setSistemaUsuarios(sistemaUsuarios);
-        this.dispose();
-    }//GEN-LAST:event_btnModoAleatorioActionPerformed
-
-    private void btnModoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoManualActionPerformed
-        // TODO add your handling code here:
-        Usuario.EsModoAleatorio = false;
+                Usuario.EsModoAleatorio = false;
         Usuario.EsModoManual = true;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
-    }//GEN-LAST:event_btnModoManualActionPerformed
+    }//GEN-LAST:event_btnManualMouseClicked
+
+    private void btnAleatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAleatorioMouseClicked
+        // TODO add your handling code here:
+                Usuario.EsModoAleatorio = true;
+        Usuario.EsModoManual = false;
+        actualizarUsuario();
+        config.setSistemaUsuarios(sistemaUsuarios);
+        this.dispose();
+    }//GEN-LAST:event_btnAleatorioMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnModoAleatorio;
-    private javax.swing.JButton btnModoManual;
+    private javax.swing.JLabel btnAleatorio;
+    private javax.swing.JLabel btnManual;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

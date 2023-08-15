@@ -43,94 +43,97 @@ public class Dificultad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnNormal = new javax.swing.JButton();
-        btnExpert = new javax.swing.JButton();
-        btnGenius = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnDNormal = new javax.swing.JLabel();
+        btnDExpert = new javax.swing.JLabel();
+        btnDGenius = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnNormal.setText("NORMAL");
-        btnNormal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNormalActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnExpert.setText("EXPERT");
-        btnExpert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExpertActionPerformed(evt);
+        btnDNormal.setForeground(new java.awt.Color(255, 255, 255));
+        btnDNormal.setText("NORMAL");
+        btnDNormal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDNormalMouseClicked(evt);
             }
         });
+        jPanel1.add(btnDNormal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
-        btnGenius.setText("GENIUS");
-        btnGenius.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGeniusActionPerformed(evt);
+        btnDExpert.setForeground(new java.awt.Color(255, 255, 255));
+        btnDExpert.setText("EXPERT");
+        btnDExpert.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDExpertMouseClicked(evt);
             }
         });
+        jPanel1.add(btnDExpert, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
+
+        btnDGenius.setForeground(new java.awt.Color(255, 255, 255));
+        btnDGenius.setText("GENIUS");
+        btnDGenius.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDGeniusMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnDGenius, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/confi2.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnNormal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnExpert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGenius, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(170, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(btnNormal)
-                .addGap(18, 18, 18)
-                .addComponent(btnExpert)
-                .addGap(18, 18, 18)
-                .addComponent(btnGenius)
-                .addContainerGap(93, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalActionPerformed
+    private void btnDNormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDNormalMouseClicked
         // TODO add your handling code here:
-        Usuario.ModoNormal = true;
+                Usuario.ModoNormal = true;
         Usuario.ModoExpert = false;
         Usuario.ModoGenius = false;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
-    }//GEN-LAST:event_btnNormalActionPerformed
+    }//GEN-LAST:event_btnDNormalMouseClicked
 
-    private void btnExpertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpertActionPerformed
+    private void btnDExpertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDExpertMouseClicked
         // TODO add your handling code here:
-        Usuario.ModoNormal = false;
+                Usuario.ModoNormal = false;
         Usuario.ModoExpert = true;
         Usuario.ModoGenius = false;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
-    }//GEN-LAST:event_btnExpertActionPerformed
+    }//GEN-LAST:event_btnDExpertMouseClicked
 
-    private void btnGeniusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeniusActionPerformed
+    private void btnDGeniusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDGeniusMouseClicked
         // TODO add your handling code here:
-        Usuario.ModoNormal = false;
+                Usuario.ModoNormal = false;
         Usuario.ModoExpert = false;
         Usuario.ModoGenius = true;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
-    }//GEN-LAST:event_btnGeniusActionPerformed
+    }//GEN-LAST:event_btnDGeniusMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExpert;
-    private javax.swing.JButton btnGenius;
-    private javax.swing.JButton btnNormal;
+    private javax.swing.JLabel btnDExpert;
+    private javax.swing.JLabel btnDGenius;
+    private javax.swing.JLabel btnDNormal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -65,84 +65,29 @@ public class Juego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        turnoLabel = new javax.swing.JLabel();
+        player1 = new javax.swing.JLabel();
+        gamePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         fantasmasEliminadosPlayer1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         fantasmasEliminadosPlayer2 = new javax.swing.JTextArea();
-        player1 = new javax.swing.JLabel();
         player2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        turnoLabel = new javax.swing.JLabel();
-        gamePanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fantasmasEliminadosPlayer1.setEditable(false);
-        fantasmasEliminadosPlayer1.setColumns(20);
-        fantasmasEliminadosPlayer1.setRows(5);
-        jScrollPane1.setViewportView(fantasmasEliminadosPlayer1);
-
-        fantasmasEliminadosPlayer2.setEditable(false);
-        fantasmasEliminadosPlayer2.setColumns(20);
-        fantasmasEliminadosPlayer2.setRows(5);
-        jScrollPane2.setViewportView(fantasmasEliminadosPlayer2);
-
-        player1.setText("jugador 1");
-
-        player2.setText("jugador 2");
-
-        jButton1.setText("Rendirse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
+        turnoLabel.setForeground(new java.awt.Color(255, 255, 255));
         turnoLabel.setText("turno");
+        jPanel2.add(turnoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 30, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(player2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(turnoLabel)
-                            .addComponent(player1))))
-                .addGap(415, 415, 415))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(turnoLabel)
-                .addGap(72, 72, 72)
-                .addComponent(player1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(player2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(136, Short.MAX_VALUE))
-        );
+        player1.setForeground(new java.awt.Color(255, 255, 255));
+        player1.setText("jugador 1");
+        jPanel2.add(player1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, -1, -1));
 
         gamePanel.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -150,30 +95,60 @@ public class Juego extends javax.swing.JFrame {
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 884, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 570, Short.MAX_VALUE)
         );
+
+        jPanel2.add(gamePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 570));
+
+        fantasmasEliminadosPlayer1.setEditable(false);
+        fantasmasEliminadosPlayer1.setBackground(new java.awt.Color(0, 51, 102));
+        fantasmasEliminadosPlayer1.setColumns(20);
+        fantasmasEliminadosPlayer1.setForeground(new java.awt.Color(204, 204, 255));
+        fantasmasEliminadosPlayer1.setRows(5);
+        jScrollPane1.setViewportView(fantasmasEliminadosPlayer1);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, -1, -1));
+
+        jScrollPane2.setBackground(new java.awt.Color(0, 51, 102));
+
+        fantasmasEliminadosPlayer2.setEditable(false);
+        fantasmasEliminadosPlayer2.setBackground(new java.awt.Color(0, 51, 102));
+        fantasmasEliminadosPlayer2.setColumns(20);
+        fantasmasEliminadosPlayer2.setForeground(new java.awt.Color(204, 204, 255));
+        fantasmasEliminadosPlayer2.setRows(5);
+        jScrollPane2.setViewportView(fantasmasEliminadosPlayer2);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 310, -1, -1));
+
+        player2.setForeground(new java.awt.Color(255, 255, 255));
+        player2.setText("jugador 2");
+        jPanel2.add(player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, -1, -1));
+
+        jButton1.setText("Rendirse");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 470, 90, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/fondoJuego.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 480, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1048, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -246,7 +221,8 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JTextArea fantasmasEliminadosPlayer2;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel player1;

@@ -31,7 +31,7 @@ public class Personaje {
         this.esPlayer1 = Player1;
 
         try {
-            Image resizedImg = resizeImage(ImageIO.read(new File("src/Icons/ghost.png")), 52, 52);
+            Image resizedImg = resizeImage(ImageIO.read(new File("src/Icons/ghost.png")), 100, 100);
             iconOculto = new ImageIcon(resizedImg);
         } catch (Exception e) {
             iconOculto = null;
@@ -45,11 +45,20 @@ public class Personaje {
         loadIcon();
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     private void loadIcon() {
         String filename;
-        filename = "src/Icons/" + nombre.replace(" ", "") + ".png";
+        if (Usuario.EsModoAleatorio){
+        filename = "src/img/" + nombre.replace(" ", "") + ".png";
+        }
+        else {
+            filename = "src/Icons/" + nombre.replace(" ", "") + ".png";
+        }
         try {
-            Image newImg = resizeImage(ImageIO.read(new File(filename)), 52, 52);
+            Image newImg = resizeImage(ImageIO.read(new File(filename)), 100, 100);
             icono = new ImageIcon(newImg);
         } catch (Exception e) {
             icono = null;
@@ -95,6 +104,26 @@ public class Personaje {
         return personajes;
     }
 
+    public static ArrayList<Personaje> getGhostsPlayer1Genius() {
+        ArrayList<Personaje> personajes = new ArrayList<Personaje>();
+        if (Usuario.ModoGenius) {
+            personajes.add(new Personaje("malo", 1, true, null));
+            personajes.add(new Personaje("bueno", 2, true, null));
+        }
+        return personajes;
+    }
+
+    public static ArrayList<Personaje> getGhostsPlayer1GeniusFake() {
+        ArrayList<Personaje> personajes = new ArrayList<Personaje>();
+        if (Usuario.ModoGenius) {
+            personajes.add(new Personaje("fake", 10, true, null));
+            personajes.add(new Personaje("fake", 10, true, null));
+            personajes.add(new Personaje("fake", 10, true, null));
+            personajes.add(new Personaje("fake", 10, true, null));
+        }
+        return personajes;
+    }
+
     public static ArrayList<Personaje> getGhostsPlayer2() {
         ArrayList<Personaje> personajes = new ArrayList<Personaje>();
 
@@ -115,6 +144,26 @@ public class Personaje {
         } else if (Usuario.ModoGenius) {
             personajes.add(new Personaje("malo", 3, false, null));
             personajes.add(new Personaje("bueno", 4, false, null));
+            personajes.add(new Personaje("fake", 0, false, null));
+            personajes.add(new Personaje("fake", 0, false, null));
+            personajes.add(new Personaje("fake", 0, false, null));
+            personajes.add(new Personaje("fake", 0, false, null));
+        }
+        return personajes;
+    }
+
+    public static ArrayList<Personaje> getGhostsPlayer2Genius() {
+        ArrayList<Personaje> personajes = new ArrayList<Personaje>();
+        if (Usuario.ModoGenius) {
+            personajes.add(new Personaje("malo", 3, false, null));
+            personajes.add(new Personaje("bueno", 4, false, null));
+        }
+        return personajes;
+    }
+
+    public static ArrayList<Personaje> getGhostsPlayer2GeniusFake() {
+        ArrayList<Personaje> personajes = new ArrayList<Personaje>();
+        if (Usuario.ModoGenius) {
             personajes.add(new Personaje("fake", 0, false, null));
             personajes.add(new Personaje("fake", 0, false, null));
             personajes.add(new Personaje("fake", 0, false, null));
