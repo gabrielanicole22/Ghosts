@@ -43,7 +43,7 @@ public class RankingReportes extends javax.swing.JFrame {
                 resultado = (partida.victoria) ? "VICTORIA" : "DERROTA";
             }
 
-            model.addRow(new Object[]{partida.contrincante.getUsuario(), resultado, partida.fecha, partida.puntosGanados});
+            model.addRow(new Object[]{partida.contrincante.getUsuario(), resultado,partida.mensajeGane, partida.fecha, partida.puntosGanados});
         }
     }
     /**
@@ -113,7 +113,7 @@ public class RankingReportes extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         matchesLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        matchesLabel.setForeground(new java.awt.Color(51, 0, 51));
+        matchesLabel.setForeground(new java.awt.Color(255, 255, 255));
         matchesLabel.setText("Partidas Jugadas");
         jPanel1.add(matchesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
 
@@ -139,12 +139,12 @@ public class RankingReportes extends javax.swing.JFrame {
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 22)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("DESCRIPCIÓN DE MIS JUEGOS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Nirmala UI", 1, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("RANKING");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
 
@@ -153,11 +153,11 @@ public class RankingReportes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Contrincante", "Resultado", "Fecha", "Puntos Que Obtuve"
+                "Contrincante", "Resultado", "Condición", "Fecha", "Puntos Que Obtuve"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -166,25 +166,26 @@ public class RankingReportes extends javax.swing.JFrame {
         });
         juegosTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(juegosTabla);
+        if (juegosTabla.getColumnModel().getColumnCount() > 0) {
+            juegosTabla.getColumnModel().getColumn(2).setPreferredWidth(60);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, -1, -1));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 1140, 670));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/fondoRaRep.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

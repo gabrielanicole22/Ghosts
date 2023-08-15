@@ -4,6 +4,8 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,22 +20,23 @@ public class EliminarCuenta extends javax.swing.JFrame {
     private Usuario usuario;
     SistemaUsuarios sistemaUsuarios;
     MenuInicio ventanaPrincipal;
-    
+
     public EliminarCuenta(SistemaUsuarios sistemaUsuarios, MenuInicio ventanaPrincipal) {
         initComponents();
         this.sistemaUsuarios = sistemaUsuarios;
         this.ventanaPrincipal = ventanaPrincipal;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+
         // Esconder label de prueba
         jLabel1.setVisible(false);
-        
+
     }
-    
+    Color SELECT_COLOR = new Color(37, 203, 232);
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,17 +60,27 @@ public class EliminarCuenta extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingrese su contraseña para confirmar:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
         jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 198, -1));
 
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Borrar");
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEliminarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseExited(evt);
+            }
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/ff.jpg"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 250));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -87,30 +100,42 @@ public class EliminarCuenta extends javax.swing.JFrame {
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
         // TODO add your handling code here:
-                    // Obtener la contraseña ingresada para luego verificar si es la misma y proceder a eliminar cuenta
-    String contrasenaIngresada = txtContraseña.getText();
+        // Obtener la contraseña ingresada para luego verificar si es la misma y proceder a eliminar cuenta
+        String contrasenaIngresada = txtContraseña.getText();
 
-    if (usuario != null) {
-        // Verifica si la contraseña ingresada coincide con la contraseña actual del usuario (actual porque antes pudo haberse cambiado)
-        if (contrasenaIngresada.equals(usuario.getContrasena())) {
-            // Eliminar la cuenta del usuario
-            sistemaUsuarios.eliminarUsuario(usuario);
+        if (usuario != null) {
+            // Verifica si la contraseña ingresada coincide con la contraseña actual del usuario (actual porque antes pudo haberse cambiado)
+            if (contrasenaIngresada.equals(usuario.getContrasena())) {
+                // Eliminar la cuenta del usuario
+                sistemaUsuarios.eliminarUsuario(usuario);
 
-            JOptionPane.showMessageDialog(this, "La cuenta ha sido eliminada exitosamente.");
-            
-            // Abrir el menu prinicpal
-            MenuPrincipal menuPrincipal = new MenuPrincipal();
-            menuPrincipal.setSistemaUsuarios(sistemaUsuarios); 
-            menuPrincipal.setVisible(true); 
-            
-            // Cerrar la ventana del menu de inicio
-            ventanaPrincipal.dispose();
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "La contraseña ingresada es incorrecta.");
+                JOptionPane.showMessageDialog(this, "La cuenta ha sido eliminada exitosamente.");
+
+                // Abrir el menu prinicpal
+                MenuPrincipal menuPrincipal = new MenuPrincipal();
+                menuPrincipal.setSistemaUsuarios(sistemaUsuarios);
+                menuPrincipal.setVisible(true);
+
+                // Cerrar la ventana del menu de inicio
+                ventanaPrincipal.dispose();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "La contraseña ingresada es incorrecta.");
+            }
         }
-    }
     }//GEN-LAST:event_btnEliminarMouseClicked
+
+    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
+        // TODO add your handling code here:
+        btnEliminar.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnEliminarMouseEntered
+
+    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
+        // TODO add your handling code here:
+        btnEliminar.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnEliminarMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnEliminar;

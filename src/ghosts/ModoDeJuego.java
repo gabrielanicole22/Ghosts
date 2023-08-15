@@ -4,6 +4,9 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
+
 /**
  *
  * @author Gabriela Mejía
@@ -33,6 +36,7 @@ public class ModoDeJuego extends javax.swing.JFrame {
     private void actualizarUsuario() {
         sistemaUsuarios.actualizarUsuario(usuario);
     }
+    Color SELECT_COLOR = new Color(37, 203, 232);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +62,12 @@ public class ModoDeJuego extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAleatorioMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAleatorioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAleatorioMouseExited(evt);
+            }
         });
         jPanel1.add(btnAleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
 
@@ -66,6 +76,12 @@ public class ModoDeJuego extends javax.swing.JFrame {
         btnManual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnManualMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnManualMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnManualMouseExited(evt);
             }
         });
         jPanel1.add(btnManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
@@ -90,7 +106,7 @@ public class ModoDeJuego extends javax.swing.JFrame {
 
     private void btnManualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManualMouseClicked
         // TODO add your handling code here:
-                Usuario.EsModoAleatorio = false;
+        Usuario.EsModoAleatorio = false;
         Usuario.EsModoManual = true;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
@@ -99,12 +115,36 @@ public class ModoDeJuego extends javax.swing.JFrame {
 
     private void btnAleatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAleatorioMouseClicked
         // TODO add your handling code here:
-                Usuario.EsModoAleatorio = true;
+        Usuario.EsModoAleatorio = true;
         Usuario.EsModoManual = false;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
     }//GEN-LAST:event_btnAleatorioMouseClicked
+
+    private void btnAleatorioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAleatorioMouseEntered
+        // TODO add your handling code here:
+        btnAleatorio.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnAleatorioMouseEntered
+
+    private void btnAleatorioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAleatorioMouseExited
+        // TODO add your handling code here:
+        btnAleatorio.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnAleatorioMouseExited
+
+    private void btnManualMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManualMouseEntered
+        // TODO add your handling code here:
+        btnManual.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnManualMouseEntered
+
+    private void btnManualMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManualMouseExited
+        // TODO add your handling code here:
+        btnManual.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnManualMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

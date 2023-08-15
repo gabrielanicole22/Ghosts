@@ -4,6 +4,9 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
+
 /**
  *
  * @author Gabriela Mejía
@@ -62,6 +65,12 @@ public class Configuracion extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDifiMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDifiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDifiMouseExited(evt);
+            }
         });
         jPanel1.add(btnDifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, -1));
 
@@ -70,6 +79,12 @@ public class Configuracion extends javax.swing.JFrame {
         btnMJuego.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMJuegoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMJuegoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMJuegoMouseExited(evt);
             }
         });
         jPanel1.add(btnMJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
@@ -94,17 +109,44 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void btnDifiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDifiMouseClicked
         // TODO add your handling code here:
-                Dificultad dificultad = new Dificultad(sistemaUsuarios, this, usuario);
+        Dificultad dificultad = new Dificultad(sistemaUsuarios, this, usuario);
         dificultad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnDifiMouseClicked
+    Color SELECT_COLOR = new Color(37, 203, 232);
 
     private void btnMJuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMJuegoMouseClicked
         // TODO add your handling code here:
-                ModoDeJuego modo = new ModoDeJuego(sistemaUsuarios, this, usuario);
+        ModoDeJuego modo = new ModoDeJuego(sistemaUsuarios, this, usuario);
         modo.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMJuegoMouseClicked
+
+    private void btnMJuegoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMJuegoMouseEntered
+        // TODO add your handling code here:
+        btnMJuego.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnMJuegoMouseEntered
+
+    private void btnMJuegoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMJuegoMouseExited
+        // TODO add your handling code here:
+        btnMJuego.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnMJuegoMouseExited
+
+    private void btnDifiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDifiMouseEntered
+        // TODO add your handling code here:
+        btnDifi.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+
+    }//GEN-LAST:event_btnDifiMouseEntered
+
+    private void btnDifiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDifiMouseExited
+        // TODO add your handling code here:
+        btnDifi.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+
+    }//GEN-LAST:event_btnDifiMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnDifi;

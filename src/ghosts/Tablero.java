@@ -220,9 +220,16 @@ public class Tablero extends JPanel {
                 bandoGanador = "Player 2";
                 bandoPerdedor = "Player 1";
             }
-
-            Partida partidaGanador = new Partida(perdedor, true, bandoGanador, 3, new Date());
-            Partida partidaPerdedor = new Partida(ganador, false, bandoPerdedor, 0, new Date());
+            
+            String mensaje= " ";
+            // Mostrar mensaje de victoria
+            if (turnoPlayer1) {
+                mensaje = "¡" + Player1.getUsuario() + " triunfó al sacar del castillo un fantasma bueno!";
+            } else {
+                mensaje = "¡" + Player2.getUsuario() + " triunfó al sacar del castillo un fantasma bueno!";
+            }
+            Partida partidaGanador = new Partida(perdedor, true, mensaje,bandoGanador, 3, new Date());
+            Partida partidaPerdedor = new Partida(ganador, false,mensaje, bandoPerdedor, 0, new Date());
 
             // Agrega las partidas a los jugadores
             ganador.addPartida(partidaGanador);
@@ -231,17 +238,10 @@ public class Tablero extends JPanel {
             // Agrega las partidas al sistema de usuarios (si es necesario)
             sistemaUsuarios.actualizarUsuario(ganador);
             sistemaUsuarios.actualizarUsuario(perdedor);
+            
+            JOptionPane.showMessageDialog(null, mensaje);
 
-            // Mostrar mensaje de victoria
-            if (turnoPlayer1) {
-                JOptionPane.showMessageDialog(null, Player1.getUsuario() + " ha ganado. Logró sacar un fantasma bueno.");
-                gameWindow.dispose();
-
-            } else {
-                JOptionPane.showMessageDialog(null, Player2.getUsuario() + " ha ganado. Logró sacar un fantasma bueno.");
-                gameWindow.dispose();
-
-            }
+            gameWindow.dispose();
             return true;
         }
         // Si el personaje es de rango 1 o 3, mostrar mensaje sin ganar
@@ -303,17 +303,17 @@ public class Tablero extends JPanel {
         
 if (ganador == casillaSeleccionada.personajeActual) {
     if (casillas[newRow][newColumn].personajeActual.rango == 2) {
-        mensajeCombate = "¡Te has comido a un fantasma bueno de " + Player1.getUsuario();
+        mensajeCombate = "¡Te has comido a un fantasma bueno de " + Player1.getUsuario()+"!";
     } else if (casillas[newRow][newColumn].personajeActual.rango == 4) {
-        mensajeCombate = "¡Te has comido a un fantasma bueno de " + Player2.getUsuario();
+        mensajeCombate = "¡Te has comido a un fantasma bueno de " + Player2.getUsuario()+"!";
     } else if (casillas[newRow][newColumn].personajeActual.rango == 1) {
-        mensajeCombate = "¡Te has comido a un fantasma malo de " + Player1.getUsuario();
+        mensajeCombate = "¡Te has comido a un fantasma malo de " + Player1.getUsuario()+"!";
     } else if (casillas[newRow][newColumn].personajeActual.rango == 3) {
-        mensajeCombate = "¡Te has comido a un fantasma malo de " + Player2.getUsuario();
+        mensajeCombate = "¡Te has comido a un fantasma malo de " + Player2.getUsuario()+"!";
     } else if (casillas[newRow][newColumn].personajeActual.rango == 0) {
-        mensajeCombate = "ERA UN FANTASMA FALSO de " + Player2.getUsuario();
+        mensajeCombate = "ERA UN FANTASMA FALSO de " + Player2.getUsuario()+"!";
     } else if (casillas[newRow][newColumn].personajeActual.rango == 10) {
-        mensajeCombate = "ERA UN FANTASMA FALSO de " + Player1.getUsuario();
+        mensajeCombate = "ERA UN FANTASMA FALSO de " + Player1.getUsuario()+"!";
     }
 
         } else {
@@ -457,8 +457,8 @@ if (ganador == casillaSeleccionada.personajeActual) {
             }
             String mensaje = ganador.getUsuario() + " ha ganado ya que "
                     + perdedor.getUsuario() + " se ha retirado del juego. - " + fecha;
-            Partida partidaGanador = new Partida(perdedor, true, bandoGanador, 3, fecha);
-            Partida partidaPerdedor = new Partida(ganador, false, bandoPerdedor, 0, fecha);
+            Partida partidaGanador = new Partida(perdedor, true,mensaje, bandoGanador, 3, fecha);
+            Partida partidaPerdedor = new Partida(ganador, false,mensaje, bandoPerdedor, 0, fecha);
 
             // El bando opuesto gana la partida.
             stats.addPartida(!turnoPlayer1);
@@ -528,23 +528,35 @@ if (ganador == casillaSeleccionada.personajeActual) {
 
         // Verificar si los fantasmas buenos o malos llegaron a 0
         if (GhostsBuenosPlayer1 == 0 || GhostsBuenosPlayer2 == 0 || GhostsMalosPlayer1 == 0 || GhostsMalosPlayer2 == 0) {
-            if (GhostsBuenosPlayer1 == 0 || GhostsMalosPlayer1 == 0) {
-                mensajeVictoria = (GhostsBuenosPlayer1 == 0) ? Player2.getUsuario() + " ha ganado. Fantasmas buenos de " + Player1.getUsuario() + " llegaron a 0."
-                        : Player2.getUsuario() + " ha ganado. Fantasmas malos de " + Player1.getUsuario() + " llegaron a 0.";
-                Partida partidaGanador = new Partida(Player2, false, "2", 3, new Date());
-                Partida partidaPerdedor = new Partida(Player1, false, "1", 0, new Date());
-                Player2.addPartida(partidaGanador);
-                Player1.addPartida(partidaPerdedor);
-                stats.addPartida(false);
-            } else {
-                mensajeVictoria = (GhostsBuenosPlayer2 == 0) ? Player1.getUsuario() + " ha ganado. Fantasmas buenos de " + Player2.getUsuario() + " llegaron a 0."
-                        : Player1.getUsuario() + " ha ganado. Fantasmas malos de " + Player2.getUsuario() + " llegaron a 0.";
-                Partida partidaGanador = new Partida(Player1, false, "1", 3, new Date());
-                Partida partidaPerdedor = new Partida(Player2, false, "2", 0, new Date());
-                Player1.addPartida(partidaGanador);
-                Player2.addPartida(partidaPerdedor);
-                stats.addPartida(true);
-            }
+            if (GhostsMalosPlayer1 == 0) {
+    mensajeVictoria = "¡"+Player1.getUsuario() + " triunfó porque " + Player2.getUsuario() + " le capturó todos sus fantasmas malos!";
+    Partida partidaGanador = new Partida(Player2, true,mensajeVictoria, "1", 3, new Date());
+    Partida partidaPerdedor = new Partida(Player1, false,mensajeVictoria, "2", 0, new Date());
+    Player1.addPartida(partidaGanador);
+    Player2.addPartida(partidaPerdedor);
+    stats.addPartida(true);
+} else if (GhostsMalosPlayer2 == 0) {
+    mensajeVictoria = "¡"+Player2.getUsuario() + " triunfó porque " + Player1.getUsuario() + " le capturó todos sus fantasmas malos!";
+    Partida partidaGanador = new Partida(Player1, true, mensajeVictoria,"2", 3, new Date());
+    Partida partidaPerdedor = new Partida(Player2, false,mensajeVictoria, "1", 0, new Date());
+    Player2.addPartida(partidaGanador);
+    Player1.addPartida(partidaPerdedor);
+    stats.addPartida(false);
+} else if (GhostsBuenosPlayer1 == 0) {
+    mensajeVictoria = "¡"+Player2.getUsuario() + " triunfó sobre " + Player1.getUsuario() + " porque capturó todos sus fantasmas buenos.";
+    Partida partidaGanador = new Partida(Player2, true,mensajeVictoria, "2", 3, new Date());
+    Partida partidaPerdedor = new Partida(Player1, false, mensajeVictoria,"1", 0, new Date());
+    Player2.addPartida(partidaGanador);
+    Player1.addPartida(partidaPerdedor);
+    stats.addPartida(false);
+} else if (GhostsBuenosPlayer2 == 0) {
+    mensajeVictoria = "¡"+Player1.getUsuario() + " triunfó sobre " + Player2.getUsuario() + " porque capturó todos sus fantasmas buenos.";
+    Partida partidaGanador = new Partida(Player1, true,mensajeVictoria, "1", 3, new Date());
+    Partida partidaPerdedor = new Partida(Player2, false,mensajeVictoria, "2", 0, new Date());
+    Player1.addPartida(partidaGanador);
+    Player2.addPartida(partidaPerdedor);
+    stats.addPartida(true);
+}
 
             JOptionPane.showMessageDialog(null, mensajeVictoria);
             juegoTerminado = true;

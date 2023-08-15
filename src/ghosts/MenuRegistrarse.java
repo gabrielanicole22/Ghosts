@@ -4,6 +4,8 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -29,6 +31,7 @@ public class MenuRegistrarse extends javax.swing.JFrame {
         //this.setMinimumSize(new Dimension(800, 500));
         this.sistemaUsuarios = sistemaUsuarios;
     }
+        Color SELECT_COLOR = new Color(37, 203, 232);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,10 +134,14 @@ public class MenuRegistrarse extends javax.swing.JFrame {
 
     private void btnRegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseEntered
         // TODO add your handling code here:
+                btnRegistro.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnRegistroMouseEntered
 
     private void btnRegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseExited
         // TODO add your handling code here:
+                btnRegistro.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnRegistroMouseExited
 
     /**

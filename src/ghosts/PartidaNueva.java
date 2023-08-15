@@ -4,6 +4,8 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.JComboBox;
 
 /**
@@ -41,6 +43,7 @@ public class PartidaNueva extends javax.swing.JFrame {
             combobox.addItem(usuario.getUsuario());
         }
     }
+    Color SELECT_COLOR = new Color(37, 203, 232);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,10 +65,17 @@ public class PartidaNueva extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 344, -1, -1));
 
+        btnPlay.setForeground(new java.awt.Color(255, 255, 255));
         btnPlay.setText("Jugar");
         btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPlayMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPlayMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPlayMouseExited(evt);
             }
         });
         getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 50, -1));
@@ -76,7 +86,9 @@ public class PartidaNueva extends javax.swing.JFrame {
             }
         });
         getContentPane().add(combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 130, -1));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 350));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/PNueva.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 390));
 
         pack();
         setLocationRelativeTo(null);
@@ -84,7 +96,7 @@ public class PartidaNueva extends javax.swing.JFrame {
 
     private void btnPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseClicked
         // TODO add your handling code here:
-                if (contrincante == null) {
+        if (contrincante == null) {
             String nombreUsuario = (String) combobox.getSelectedItem();
             contrincante = sistemaUsuarios.getUsuario(nombreUsuario);
             dispose();
@@ -94,7 +106,20 @@ public class PartidaNueva extends javax.swing.JFrame {
 
     private void comboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_comboboxActionPerformed
+
+    private void btnPlayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseEntered
+        // TODO add your handling code here:
+        btnPlay.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnPlayMouseEntered
+
+    private void btnPlayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseExited
+        // TODO add your handling code here:
+        btnPlay.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnPlayMouseExited
 
     public void crearJuego() {
         Usuario player1, player2;

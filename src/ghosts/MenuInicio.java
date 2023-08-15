@@ -217,34 +217,50 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void btnConfiguracionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionMouseEntered
         // TODO add your handling code here:
+                btnConfiguracion.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnConfiguracionMouseEntered
 
     private void btnConfiguracionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionMouseExited
         // TODO add your handling code here:
+                btnConfiguracion.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnConfiguracionMouseExited
 
     private void btnReportsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportsMouseEntered
         // TODO add your handling code here:
+                btnReports.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnReportsMouseEntered
 
     private void btnReportsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportsMouseExited
         // TODO add your handling code here:
+                btnReports.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnReportsMouseExited
 
     private void btnProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseEntered
         // TODO add your handling code here:
+                btnProfile.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnProfileMouseEntered
 
     private void btnProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseExited
         // TODO add your handling code here:
+                btnProfile.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnProfileMouseExited
 
     private void btnCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseEntered
         // TODO add your handling code here:
+                btnCerrarSesion.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnCerrarSesionMouseEntered
 
     private void btnCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseExited
         // TODO add your handling code here:
+                btnCerrarSesion.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnCerrarSesionMouseExited
 
 

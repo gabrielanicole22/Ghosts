@@ -4,6 +4,8 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,14 +47,12 @@ public class MiPerfil extends javax.swing.JFrame {
         for (int i = (partidas.toArray().length - 1); i >= 0; i--) {
             Partida partida = partidas.get(i);
             String resultado;
-
             if (partida.puntosGanados == 1.5) {
                 resultado = "EMPATE";
             } else {
                 resultado = (partida.victoria) ? "VICTORIA" : "DERROTA";
             }
-
-            model.addRow(new Object[]{partida.contrincante.getUsuario(), resultado, partida.fecha, partida.puntosGanados});
+            model.addRow(new Object[]{partida.contrincante.getUsuario(), resultado,partida.mensajeGane, partida.fecha, partida.puntosGanados});
         }
     }
 
@@ -62,20 +62,22 @@ public class MiPerfil extends javax.swing.JFrame {
             labelUsuario.setText(nombreUsuario);
         }
     }
+
     public void mostrarInformacionUsuarioo() {
         if (usuario != null) {
             double puntosTotales = usuario.getPuntos();
             Labelpuntos.setText(String.valueOf(puntosTotales));
         }
     }
-    
 
     public void mostrarMiPerfil(String nombre) {
         labelUsuario.setText(nombre);
     }
+
     public void mostrarMiPutno(double puntos) {
-            Labelpuntos.setText(String.valueOf(puntos));
+        Labelpuntos.setText(String.valueOf(puntos));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,19 +104,20 @@ public class MiPerfil extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelUsuario.setForeground(new java.awt.Color(255, 255, 255));
         labelUsuario.setText("usuario");
-        jPanel1.add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
+        jPanel1.add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
 
         matchTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Contrincante", "Resultado", "Fecha", "Puntos Ganados"
+                "Contrincante", "Resultado", "Condición", "Fecha", "Puntos Ganados"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -125,41 +128,69 @@ public class MiPerfil extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 586, 300));
 
+        btnCambiar.setForeground(new java.awt.Color(255, 255, 255));
         btnCambiar.setText("CAMBIAR PASSWORD");
         btnCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCambiarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCambiarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCambiarMouseExited(evt);
+            }
         });
         jPanel1.add(btnCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, -1, -1));
 
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("REGRESAR");
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBackMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBackMouseExited(evt);
+            }
         });
         jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, -1));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Usuario:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Puntos Totales:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
 
+        Labelpuntos.setForeground(new java.awt.Color(255, 255, 255));
         Labelpuntos.setText("puntos");
-        jPanel1.add(Labelpuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 84, 16));
+        jPanel1.add(Labelpuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 84, 16));
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mi Perfil");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
 
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("ELIMINAR CUENTA");
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEliminarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseExited(evt);
+            }
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, -1));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/fondoMP.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,7 +210,7 @@ public class MiPerfil extends javax.swing.JFrame {
 
     private void btnCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarMouseClicked
         // TODO add your handling code here:
-                CambiarPassword changePassword = new CambiarPassword(sistemaUsuarios, this);
+        CambiarPassword changePassword = new CambiarPassword(sistemaUsuarios, this);
         changePassword.setUsuario(usuario);
         changePassword.setVisible(true);
         this.dispose();
@@ -187,17 +218,54 @@ public class MiPerfil extends javax.swing.JFrame {
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-                this.dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
         // TODO add your handling code here:
-                EliminarCuenta delete = new EliminarCuenta(sistemaUsuarios, ventanaPrincipal);
+        EliminarCuenta delete = new EliminarCuenta(sistemaUsuarios, ventanaPrincipal);
         delete.setUsuario(usuario);
         delete.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEliminarMouseClicked
+    Color SELECT_COLOR = new Color(37, 203, 232);
+
+    private void btnCambiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarMouseEntered
+        // TODO add your handling code here:
+        btnCambiar.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnCambiarMouseEntered
+
+    private void btnCambiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarMouseExited
+        // TODO add your handling code here:
+        btnCambiar.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnCambiarMouseExited
+
+    private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
+        // TODO add your handling code here:
+        btnBack.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnBackMouseEntered
+
+    private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
+        // TODO add your handling code here:
+        btnBack.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnBackMouseExited
+
+    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
+        // TODO add your handling code here:
+        btnEliminar.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnEliminarMouseEntered
+
+    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
+        // TODO add your handling code here:
+        btnEliminar.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnEliminarMouseExited
 
     /**
      * @param args the command line arguments

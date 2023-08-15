@@ -4,6 +4,9 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
+
 /**
  *
  * @author Gabriela Mejía
@@ -59,6 +62,12 @@ public class Dificultad extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDNormalMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDNormalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDNormalMouseExited(evt);
+            }
         });
         jPanel1.add(btnDNormal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
@@ -68,6 +77,12 @@ public class Dificultad extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDExpertMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDExpertMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDExpertMouseExited(evt);
+            }
         });
         jPanel1.add(btnDExpert, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
 
@@ -76,6 +91,12 @@ public class Dificultad extends javax.swing.JFrame {
         btnDGenius.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDGeniusMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDGeniusMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDGeniusMouseExited(evt);
             }
         });
         jPanel1.add(btnDGenius, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
@@ -101,7 +122,7 @@ public class Dificultad extends javax.swing.JFrame {
 
     private void btnDNormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDNormalMouseClicked
         // TODO add your handling code here:
-                Usuario.ModoNormal = true;
+        Usuario.ModoNormal = true;
         Usuario.ModoExpert = false;
         Usuario.ModoGenius = false;
         actualizarUsuario();
@@ -111,7 +132,7 @@ public class Dificultad extends javax.swing.JFrame {
 
     private void btnDExpertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDExpertMouseClicked
         // TODO add your handling code here:
-                Usuario.ModoNormal = false;
+        Usuario.ModoNormal = false;
         Usuario.ModoExpert = true;
         Usuario.ModoGenius = false;
         actualizarUsuario();
@@ -121,13 +142,50 @@ public class Dificultad extends javax.swing.JFrame {
 
     private void btnDGeniusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDGeniusMouseClicked
         // TODO add your handling code here:
-                Usuario.ModoNormal = false;
+        Usuario.ModoNormal = false;
         Usuario.ModoExpert = false;
         Usuario.ModoGenius = true;
         actualizarUsuario();
         config.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
     }//GEN-LAST:event_btnDGeniusMouseClicked
+    Color SELECT_COLOR = new Color(37, 203, 232);
+
+    private void btnDNormalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDNormalMouseEntered
+        // TODO add your handling code here:
+        btnDNormal.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnDNormalMouseEntered
+
+    private void btnDNormalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDNormalMouseExited
+        // TODO add your handling code here:
+        btnDNormal.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnDNormalMouseExited
+
+    private void btnDExpertMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDExpertMouseEntered
+        // TODO add your handling code here:
+        btnDExpert.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnDExpertMouseEntered
+
+    private void btnDExpertMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDExpertMouseExited
+        // TODO add your handling code here:
+        btnDExpert.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnDExpertMouseExited
+
+    private void btnDGeniusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDGeniusMouseEntered
+        // TODO add your handling code here:
+        btnDGenius.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnDGeniusMouseEntered
+
+    private void btnDGeniusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDGeniusMouseExited
+        // TODO add your handling code here:
+        btnDGenius.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnDGeniusMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnDExpert;

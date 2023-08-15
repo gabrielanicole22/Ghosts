@@ -4,6 +4,8 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -26,6 +28,7 @@ public class MenuLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.sistemaUsuarios = sistema;
     }
+    Color SELECT_COLOR = new Color(37, 203, 232);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,10 +116,14 @@ public class MenuLogin extends javax.swing.JFrame {
 
     private void btnIniciarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarMouseEntered
         // TODO add your handling code here:
+        btnIniciar.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnIniciarMouseEntered
 
     private void btnIniciarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarMouseExited
         // TODO add your handling code here:
+        btnIniciar.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnIniciarMouseExited
 
     /**

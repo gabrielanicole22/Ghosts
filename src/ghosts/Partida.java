@@ -18,17 +18,14 @@ public class Partida {
     String bandoUsado;
     double puntosGanados;
     String fecha;
-
-    public Partida(Usuario contrincante, boolean victoria, String bandoUsado, double puntosGanados, Date fechaObj) {
+    String mensajeGane;
+    public Partida(Usuario contrincante, boolean victoria, String mensajeGane, String bandoUsado, double puntosGanados, Date fechaObj) {
         this.contrincante = contrincante;
         this.victoria = victoria;
         this.bandoUsado = bandoUsado;
         this.puntosGanados = puntosGanados;
+        this.mensajeGane=mensajeGane;
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy HH:mm");
         this.fecha = formato.format(fechaObj);
-    }
-    
-    public double getPuntos(){
-        return puntosGanados;
     }
 }

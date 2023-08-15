@@ -4,6 +4,9 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
+
 /**
  *
  * @author Gabriela Mejía
@@ -19,6 +22,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         sistemaUsuarios = new SistemaUsuarios();
     }
+        Color SELECT_COLOR = new Color(37, 203, 232);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,26 +126,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnRegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseEntered
         // TODO add your handling code here:
+                btnRegistro.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnRegistroMouseEntered
 
     private void btnRegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseExited
         // TODO add your handling code here:
+                btnRegistro.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnRegistroMouseExited
 
     private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
         // TODO add your handling code here:
+                btnLogin.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnLoginMouseEntered
 
     private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseExited
         // TODO add your handling code here:
+                btnLogin.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnLoginMouseExited
 
     private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
         // TODO add your handling code here:
+                btnSalir.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnSalirMouseEntered
 
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
         // TODO add your handling code here:
+                btnSalir.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnSalirMouseExited
 
     public void setSistemaUsuarios(SistemaUsuarios sistema) {

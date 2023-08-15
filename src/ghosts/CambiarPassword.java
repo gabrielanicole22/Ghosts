@@ -4,22 +4,25 @@
  */
 package ghosts;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Gabriela Mejía
  */
-
 import javax.swing.*;
+
 public class CambiarPassword extends javax.swing.JFrame {
+
     /**
      * Creates new form CambiarPassword
-     */    
+     */
     private Usuario usuario;
     SistemaUsuarios sistemaUsuarios;
     MiPerfil ventanaPerfil;
-    
+
     public CambiarPassword(SistemaUsuarios sistemaUsuarios, MiPerfil ventanaPrincipal) {
         initComponents();
         this.sistemaUsuarios = sistemaUsuarios;
@@ -30,8 +33,9 @@ public class CambiarPassword extends javax.swing.JFrame {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-  
-  
+
+    Color SELECT_COLOR = new Color(37, 203, 232);
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,10 +69,17 @@ public class CambiarPassword extends javax.swing.JFrame {
         jLabel2.setText("Contraseña Nueva:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 140, -1, -1));
 
-        btnCambiarContra.setBackground(new java.awt.Color(0, 255, 255));
         btnCambiarContra.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
-        btnCambiarContra.setForeground(new java.awt.Color(255, 255, 255));
+        btnCambiarContra.setForeground(new java.awt.Color(204, 204, 204));
         btnCambiarContra.setText("ACTUALIZAR PASSWORD");
+        btnCambiarContra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCambiarContraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCambiarContraMouseExited(evt);
+            }
+        });
         btnCambiarContra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCambiarContraActionPerformed(evt);
@@ -82,6 +93,8 @@ public class CambiarPassword extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
         jPanel1.add(txtContraseñaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 95, 243, -1));
         jPanel1.add(txtContraseñaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 140, 244, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/ff.jpg"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 270));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,7 +120,7 @@ public class CambiarPassword extends javax.swing.JFrame {
 
             if (contrasenaIngresada.equals(contrasenaActual)) {
                 String nuevaContrasena = txtContraseñaNueva.getText();
-                
+
                 usuario.setContrasena(nuevaContrasena); // Actualiza contraseña en el objeto Usuario
                 sistemaUsuarios.actualizarUsuario(usuario);
                 ventanaPerfil.setSistemaUsuarios(sistemaUsuarios);
@@ -117,12 +130,24 @@ public class CambiarPassword extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "La contraseña actual es incorrecta.");
                 return;
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo cambiar la contraseña.");
             dispose();
         }
     }//GEN-LAST:event_btnCambiarContraActionPerformed
+
+    private void btnCambiarContraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarContraMouseEntered
+        // TODO add your handling code here:
+        btnCambiarContra.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnCambiarContraMouseEntered
+
+    private void btnCambiarContraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarContraMouseExited
+        // TODO add your handling code here:
+        btnCambiarContra.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnCambiarContraMouseExited
 
     /**
      * @param args the command line arguments
