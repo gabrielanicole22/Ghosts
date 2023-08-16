@@ -51,10 +51,9 @@ public class Personaje {
 
     private void loadIcon() {
         String filename;
-        if (Usuario.EsModoAleatorio){
-        filename = "src/img/" + nombre.replace(" ", "") + ".png";
-        }
-        else {
+        if (Usuario.EsModoAleatorio) {
+            filename = "src/img/" + nombre.replace(" ", "") + ".png";
+        } else {
             filename = "src/Icons/" + nombre.replace(" ", "") + ".png";
         }
         try {

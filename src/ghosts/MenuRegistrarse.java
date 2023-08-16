@@ -31,7 +31,7 @@ public class MenuRegistrarse extends javax.swing.JFrame {
         //this.setMinimumSize(new Dimension(800, 500));
         this.sistemaUsuarios = sistemaUsuarios;
     }
-        Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(184, 216, 190);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +44,7 @@ public class MenuRegistrarse extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         userInput = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         passwordInput = new javax.swing.JPasswordField();
@@ -54,18 +55,35 @@ public class MenuRegistrarse extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 22)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("usuario");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
-        jPanel1.add(userInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 144, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Segoe Marker", 0, 40)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 204, 255));
+        jLabel4.setText("Registrarse");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+
+        userInput.setBackground(new java.awt.Color(51, 0, 51));
+        userInput.setFont(new java.awt.Font("Segoe UI Historic", 0, 18)); // NOI18N
+        userInput.setForeground(new java.awt.Color(255, 204, 255));
+        jPanel1.add(userInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 144, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Historic", 0, 22)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("contraseña");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
-        jPanel1.add(passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 144, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
 
-        btnRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistro.setText("Registrarse");
+        passwordInput.setBackground(new java.awt.Color(51, 0, 51));
+        passwordInput.setFont(new java.awt.Font("Segoe UI Historic", 0, 18)); // NOI18N
+        passwordInput.setForeground(new java.awt.Color(255, 204, 255));
+        jPanel1.add(passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 144, -1));
+
+        btnRegistro.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistro.setFont(new java.awt.Font("Parchment", 0, 55)); // NOI18N
+        btnRegistro.setForeground(new java.awt.Color(204, 204, 255));
+        btnRegistro.setText("Guardar");
         btnRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistroMouseClicked(evt);
@@ -77,17 +95,17 @@ public class MenuRegistrarse extends javax.swing.JFrame {
                 btnRegistroMouseExited(evt);
             }
         });
-        jPanel1.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        jPanel1.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/Registro.jpg"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +118,7 @@ public class MenuRegistrarse extends javax.swing.JFrame {
 
     private void btnRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseClicked
         // TODO add your handling code here:
-               String username = userInput.getText().trim();
+        String username = userInput.getText().trim();
         String password = new String(passwordInput.getPassword());
 
         // Recorrer la lista buscando espacios
@@ -134,13 +152,13 @@ public class MenuRegistrarse extends javax.swing.JFrame {
 
     private void btnRegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseEntered
         // TODO add your handling code here:
-                btnRegistro.setForeground(SELECT_COLOR);
+        btnRegistro.setForeground(SELECT_COLOR);
         setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnRegistroMouseEntered
 
     private void btnRegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseExited
         // TODO add your handling code here:
-                btnRegistro.setForeground(Color.white);
+        btnRegistro.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnRegistroMouseExited
 
@@ -184,6 +202,7 @@ public class MenuRegistrarse extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField passwordInput;
     private javax.swing.JTextField userInput;

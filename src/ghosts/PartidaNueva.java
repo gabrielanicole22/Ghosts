@@ -43,7 +43,7 @@ public class PartidaNueva extends javax.swing.JFrame {
             combobox.addItem(usuario.getUsuario());
         }
     }
-    Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(223, 227, 238);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,6 +57,7 @@ public class PartidaNueva extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnPlay = new javax.swing.JLabel();
         combobox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +66,8 @@ public class PartidaNueva extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 344, -1, -1));
 
-        btnPlay.setForeground(new java.awt.Color(255, 255, 255));
+        btnPlay.setFont(new java.awt.Font("Ravie", 0, 18)); // NOI18N
+        btnPlay.setForeground(new java.awt.Color(51, 255, 204));
         btnPlay.setText("Jugar");
         btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -78,14 +80,21 @@ public class PartidaNueva extends javax.swing.JFrame {
                 btnPlayMouseExited(evt);
             }
         });
-        getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 50, -1));
+        getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 80, -1));
 
+        combobox.setBackground(new java.awt.Color(51, 51, 51));
+        combobox.setForeground(new java.awt.Color(153, 255, 204));
         combobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboboxActionPerformed(evt);
             }
         });
-        getContentPane().add(combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 130, -1));
+        getContentPane().add(combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 160, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe Marker", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel2.setText("Escoge a tu oponente:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/PNueva.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 390));
@@ -141,6 +150,7 @@ public class PartidaNueva extends javax.swing.JFrame {
     private javax.swing.JLabel btnPlay;
     private javax.swing.JComboBox<String> combobox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

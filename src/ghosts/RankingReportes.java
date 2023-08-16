@@ -4,9 +4,8 @@
  */
 package ghosts;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import java.awt.Cursor;
 
 /**
  *
@@ -17,35 +16,36 @@ public class RankingReportes extends javax.swing.JFrame {
     /**
      * Creates new form UniversoMarvel
      */
-    
+    Color SELECT_COLOR = new Color(177, 177, 177);
+
+    private Usuario usuario;
     SistemaUsuarios sistemaUsuarios;
-    Stats stats;
+    Stats stats = new Stats();
+
     public RankingReportes(SistemaUsuarios sistemaUsuarios, Stats stats) {
+        this.sistemaUsuarios = sistemaUsuarios;
+        usuario = sistemaUsuarios.getUsuarioActual();
+        setResizable(false);
         this.sistemaUsuarios = sistemaUsuarios;
         this.stats = stats;
         initComponents();
-        cargarRankings();
-        cargarPartidas();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        matchesLabel.setText("Partidas Jugadas: " + Stats.getPartidasJugadas());
     }
-    public void cargarPartidas() {
-        ArrayList<Partida> partidas = sistemaUsuarios.usuarioIniciado.getPartidas();
-        DefaultTableModel model = (DefaultTableModel) juegosTabla.getModel();
 
-        for (int i = (partidas.toArray().length - 1); i >= 0; i--) {
-            Partida partida = partidas.get(i);
-            String resultado;
-
-            if (partida.puntosGanados == 1.5) {
-                resultado = "EMPATE";
-            } else {
-                resultado = (partida.victoria) ? "VICTORIA" : "DERROTA";
-            }
-
-            model.addRow(new Object[]{partida.contrincante.getUsuario(), resultado,partida.mensajeGane, partida.fecha, partida.puntosGanados});
-        }
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
+
+    public void setSistemaUsuarios(SistemaUsuarios sistemaUsuarios) {
+        this.sistemaUsuarios = sistemaUsuarios;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        //mostrarInformacionUsuario();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,13 +60,10 @@ public class RankingReportes extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         matchTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        matchesLabel = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        rankingTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        juegosTabla = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JLabel();
+        btnJuegos = new javax.swing.JLabel();
+        btnRanking = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         matchTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -106,141 +103,149 @@ public class RankingReportes extends javax.swing.JFrame {
         jScrollPane3.setViewportView(matchTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Universo Marvel");
+        setTitle("Reportes");
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        matchesLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        matchesLabel.setForeground(new java.awt.Color(255, 255, 255));
-        matchesLabel.setText("Partidas Jugadas");
-        jPanel1.add(matchesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Parchment", 0, 130)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Reportes");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
 
-        rankingTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Posicion", "Usuario", "Puntos"
+        btnRegresar.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setText("REGRESAR");
+        btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegresarMouseClicked(evt);
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegresarMouseExited(evt);
             }
         });
-        rankingTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(rankingTable1);
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 500, -1, -1));
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 22)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("DESCRIPCIÓN DE MIS JUEGOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Nirmala UI", 1, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("RANKING");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
-
-        juegosTabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Contrincante", "Resultado", "Condición", "Fecha", "Puntos Que Obtuve"
+        btnJuegos.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
+        btnJuegos.setForeground(new java.awt.Color(255, 255, 255));
+        btnJuegos.setText("DESCRIPCIÓN DE MIS JUEGOS");
+        btnJuegos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnJuegosMouseClicked(evt);
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnJuegosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnJuegosMouseExited(evt);
             }
         });
-        juegosTabla.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(juegosTabla);
-        if (juegosTabla.getColumnModel().getColumnCount() > 0) {
-            juegosTabla.getColumnModel().getColumn(2).setPreferredWidth(60);
-        }
+        jPanel1.add(btnJuegos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, -1));
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, -1, -1));
+        btnRanking.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
+        btnRanking.setForeground(new java.awt.Color(255, 255, 255));
+        btnRanking.setText("RANKING");
+        btnRanking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRankingMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRankingMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRankingMouseExited(evt);
+            }
+        });
+        jPanel1.add(btnRanking, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/fondoRaRep.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 650));
+        jLabel3.setPreferredSize(new java.awt.Dimension(1140, 540));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    void printUsuarios(Usuario[] usuarios) {
-        for (Usuario user:usuarios) {
-            System.out.println(user.getUsuario() + ": " + user.getPuntos());
-        }
-    }
-    
-    void cargarRankings() {
-        Usuario[] usuarios = sistemaUsuarios.getUsuariosActivos();
-        printUsuarios(usuarios);
-        usuarios = ordernarUsuario(usuarios);
-        System.out.println("===ORDENADOS===");
-        printUsuarios(usuarios);
-        
-        DefaultTableModel model = (DefaultTableModel) rankingTable1.getModel();
-        for (int i = 0; i<usuarios.length;i++) {
-            Usuario user = usuarios[i];
-            model.addRow(new Object[]{i+1, user.getUsuario(), user.getPuntos()});
-        }
-    }
-    
-    Usuario[] ordernarUsuario(Usuario[] usuarios) {
-        Usuario usuariosOrdenados[] = Arrays.copyOf(usuarios, usuarios.length);
-        
-        if (usuarios.length == 1) return usuarios;
-        
-        for (int i =0;i<usuariosOrdenados.length-1;i++){
-            Usuario L = usuarios[i];
-            Usuario R = usuarios[i+1];
-            if (L.getPuntos()<R.getPuntos()) {
-                usuarios[i + 1] = L;
-                usuarios[i] = R;
-            }
-        }
-        return usuarios;
-    }
+    private void btnRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankingMouseClicked
+        // TODO add your handling code here:
+        Reportes ranks = new Reportes(sistemaUsuarios, stats);
+        ranks.setVisible(true);
+    }//GEN-LAST:event_btnRankingMouseClicked
+
+    private void btnRankingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankingMouseEntered
+        // TODO add your handling code here:
+        btnRanking.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnRankingMouseEntered
+
+    private void btnRankingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankingMouseExited
+        // TODO add your handling code here:
+        btnRanking.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnRankingMouseExited
+
+    private void btnJuegosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJuegosMouseClicked
+        // TODO add your handling code here:
+        Juegos juegos = new Juegos(sistemaUsuarios, stats);
+        juegos.setVisible(true);
+    }//GEN-LAST:event_btnJuegosMouseClicked
+
+    private void btnJuegosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJuegosMouseEntered
+        // TODO add your handling code here:
+        btnJuegos.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnJuegosMouseEntered
+
+    private void btnJuegosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJuegosMouseExited
+        // TODO add your handling code here:
+        btnJuegos.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+
+    }//GEN-LAST:event_btnJuegosMouseExited
+
+    private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarMouseClicked
+
+    private void btnRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseEntered
+        // TODO add your handling code here:
+        btnRegresar.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnRegresarMouseEntered
+
+    private void btnRegresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseExited
+        // TODO add your handling code here:
+        btnRegresar.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnRegresarMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel btnJuegos;
+    private javax.swing.JLabel btnRanking;
+    private javax.swing.JLabel btnRegresar;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable juegosTabla;
     private javax.swing.JTable matchTable;
     private javax.swing.JTable matchTable1;
-    private javax.swing.JLabel matchesLabel;
-    private javax.swing.JTable rankingTable1;
     // End of variables declaration//GEN-END:variables
 }

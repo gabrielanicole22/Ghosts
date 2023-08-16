@@ -28,7 +28,7 @@ public class MenuLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.sistemaUsuarios = sistema;
     }
-    Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(255, 98, 137);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,6 +41,7 @@ public class MenuLogin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         usernameInput = new javax.swing.JTextField();
         passwordInput = new javax.swing.JPasswordField();
@@ -51,18 +52,39 @@ public class MenuLogin extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 22)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("usuario");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Segoe Marker", 0, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 204, 255));
+        jLabel4.setText("Iniciar Sesión");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Historic", 0, 22)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("contraseña");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
-        jPanel1.add(usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 144, -1));
-        jPanel1.add(passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 144, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
 
+        usernameInput.setBackground(new java.awt.Color(102, 0, 0));
+        usernameInput.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        usernameInput.setForeground(new java.awt.Color(255, 204, 204));
+        usernameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameInputActionPerformed(evt);
+            }
+        });
+        jPanel1.add(usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 144, -1));
+
+        passwordInput.setBackground(new java.awt.Color(102, 0, 0));
+        passwordInput.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        passwordInput.setForeground(new java.awt.Color(255, 204, 204));
+        jPanel1.add(passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 144, -1));
+
+        btnIniciar.setFont(new java.awt.Font("Parchment", 1, 48)); // NOI18N
         btnIniciar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciar.setText("Iniciar Sesión");
+        btnIniciar.setText("Ingresar");
         btnIniciar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnIniciarMouseClicked(evt);
@@ -74,11 +96,11 @@ public class MenuLogin extends javax.swing.JFrame {
                 btnIniciarMouseExited(evt);
             }
         });
-        jPanel1.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
+        jPanel1.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/Login.jpg"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 480));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 540));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,7 +110,7 @@ public class MenuLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -125,6 +147,10 @@ public class MenuLogin extends javax.swing.JFrame {
         btnIniciar.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnIniciarMouseExited
+
+    private void usernameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameInputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,6 +192,7 @@ public class MenuLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField passwordInput;
     private javax.swing.JTextField usernameInput;

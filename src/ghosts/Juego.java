@@ -25,13 +25,13 @@ public class Juego extends javax.swing.JFrame {
     /**
      * Creates new form Juego
      */
- Tablero tablero;
+    Tablero tablero;
 
     public Juego(SistemaUsuarios sistemaUsuarios, Stats stats, Usuario player1, Usuario player2, MenuInicio mainWindow) {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         gamePanel.setLayout(new GridLayout(1, 1));
-        gamePanel.setPreferredSize(new Dimension(800, 800));        
+        gamePanel.setPreferredSize(new Dimension(1000, 1000));
         tablero = new Tablero(
                 fantasmasEliminadosPlayer1,
                 fantasmasEliminadosPlayer2,
@@ -44,8 +44,9 @@ public class Juego extends javax.swing.JFrame {
         gamePanel.add(tablero);
         gamePanel.repaint();
         setVisible(true);
+        tablero.resaltarZonasProhibidas();
         tablero.TerminardeCargar();
-         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
                 Thread.sleep(100); // Dar tiempo al formulario para mostrarse por completo
@@ -53,11 +54,11 @@ public class Juego extends javax.swing.JFrame {
                 return null;
             }
         };
-        
+
         worker.execute(); // Ejecutar el SwingWorker
     }
-    
-                  Color SELECT_COLOR = new Color(37, 203, 232);
+
+    Color SELECT_COLOR = new Color(37, 203, 232);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,6 +70,7 @@ public class Juego extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         turnoLabel = new javax.swing.JLabel();
         player1 = new javax.swing.JLabel();
         gamePanel = new javax.swing.JPanel();
@@ -84,13 +86,20 @@ public class Juego extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Quiska", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Turno Actual:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, -1, 50));
+
+        turnoLabel.setFont(new java.awt.Font("Quiska", 0, 24)); // NOI18N
         turnoLabel.setForeground(new java.awt.Color(255, 255, 255));
         turnoLabel.setText("turno");
-        jPanel2.add(turnoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 30, -1, -1));
+        jPanel2.add(turnoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 110, -1, -1));
 
+        player1.setFont(new java.awt.Font("Ink Free", 0, 24)); // NOI18N
         player1.setForeground(new java.awt.Color(255, 255, 255));
         player1.setText("jugador 1");
-        jPanel2.add(player1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, -1, -1));
+        jPanel2.add(player1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, -1, -1));
 
         gamePanel.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -110,27 +119,32 @@ public class Juego extends javax.swing.JFrame {
         fantasmasEliminadosPlayer1.setEditable(false);
         fantasmasEliminadosPlayer1.setBackground(new java.awt.Color(0, 51, 102));
         fantasmasEliminadosPlayer1.setColumns(20);
+        fantasmasEliminadosPlayer1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         fantasmasEliminadosPlayer1.setForeground(new java.awt.Color(204, 204, 255));
         fantasmasEliminadosPlayer1.setRows(5);
         jScrollPane1.setViewportView(fantasmasEliminadosPlayer1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, -1, -1));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 190, 320, 130));
 
         jScrollPane2.setBackground(new java.awt.Color(0, 51, 102));
 
         fantasmasEliminadosPlayer2.setEditable(false);
         fantasmasEliminadosPlayer2.setBackground(new java.awt.Color(0, 51, 102));
         fantasmasEliminadosPlayer2.setColumns(20);
+        fantasmasEliminadosPlayer2.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         fantasmasEliminadosPlayer2.setForeground(new java.awt.Color(204, 204, 255));
         fantasmasEliminadosPlayer2.setRows(5);
         jScrollPane2.setViewportView(fantasmasEliminadosPlayer2);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 310, -1, -1));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, 320, 130));
 
+        player2.setFont(new java.awt.Font("Ink Free", 0, 24)); // NOI18N
         player2.setForeground(new java.awt.Color(255, 255, 255));
         player2.setText("jugador 2");
-        jPanel2.add(player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, -1, -1));
+        jPanel2.add(player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
+        jButton1.setFont(new java.awt.Font("Rage Italic", 0, 24)); // NOI18N
         jButton1.setText("Rendirse");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -148,7 +162,7 @@ public class Juego extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 470, 90, 50));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 520, 120, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/fondoJuego.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -252,6 +266,7 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JPanel gamePanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -36,7 +36,7 @@ public class ModoDeJuego extends javax.swing.JFrame {
     private void actualizarUsuario() {
         sistemaUsuarios.actualizarUsuario(usuario);
     }
-    Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(255, 154, 0);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +48,7 @@ public class ModoDeJuego extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         btnAleatorio = new javax.swing.JLabel();
         btnManual = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -56,8 +57,14 @@ public class ModoDeJuego extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Segoe Marker", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 204, 153));
+        jLabel2.setText("Escoge tu Modo de Juego:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        btnAleatorio.setFont(new java.awt.Font("Ravie", 0, 30)); // NOI18N
         btnAleatorio.setForeground(new java.awt.Color(255, 255, 255));
-        btnAleatorio.setText("Modo Aleatorio");
+        btnAleatorio.setText("Aleatorio");
         btnAleatorio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAleatorioMouseClicked(evt);
@@ -69,10 +76,11 @@ public class ModoDeJuego extends javax.swing.JFrame {
                 btnAleatorioMouseExited(evt);
             }
         });
-        jPanel1.add(btnAleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
+        jPanel1.add(btnAleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
+        btnManual.setFont(new java.awt.Font("Ravie", 0, 30)); // NOI18N
         btnManual.setForeground(new java.awt.Color(255, 255, 255));
-        btnManual.setText("Modo Manual");
+        btnManual.setText("Manual");
         btnManual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnManualMouseClicked(evt);
@@ -84,10 +92,10 @@ public class ModoDeJuego extends javax.swing.JFrame {
                 btnManualMouseExited(evt);
             }
         });
-        jPanel1.add(btnManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+        jPanel1.add(btnManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/confi2.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 410));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,6 +159,7 @@ public class ModoDeJuego extends javax.swing.JFrame {
     private javax.swing.JLabel btnAleatorio;
     private javax.swing.JLabel btnManual;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

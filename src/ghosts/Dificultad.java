@@ -48,6 +48,7 @@ public class Dificultad extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnDNormal = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         btnDExpert = new javax.swing.JLabel();
         btnDGenius = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -56,6 +57,7 @@ public class Dificultad extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnDNormal.setFont(new java.awt.Font("Ravie", 0, 30)); // NOI18N
         btnDNormal.setForeground(new java.awt.Color(255, 255, 255));
         btnDNormal.setText("NORMAL");
         btnDNormal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -69,8 +71,14 @@ public class Dificultad extends javax.swing.JFrame {
                 btnDNormalMouseExited(evt);
             }
         });
-        jPanel1.add(btnDNormal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
+        jPanel1.add(btnDNormal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe Marker", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Escoge nivel de dificultad:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        btnDExpert.setFont(new java.awt.Font("Ravie", 0, 30)); // NOI18N
         btnDExpert.setForeground(new java.awt.Color(255, 255, 255));
         btnDExpert.setText("EXPERT");
         btnDExpert.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,8 +92,9 @@ public class Dificultad extends javax.swing.JFrame {
                 btnDExpertMouseExited(evt);
             }
         });
-        jPanel1.add(btnDExpert, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
+        jPanel1.add(btnDExpert, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
+        btnDGenius.setFont(new java.awt.Font("Ravie", 0, 30)); // NOI18N
         btnDGenius.setForeground(new java.awt.Color(255, 255, 255));
         btnDGenius.setText("GENIUS");
         btnDGenius.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,17 +108,18 @@ public class Dificultad extends javax.swing.JFrame {
                 btnDGeniusMouseExited(evt);
             }
         });
-        jPanel1.add(btnDGenius, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
+        jPanel1.add(btnDGenius, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Ravie", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/confi2.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 410));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +159,7 @@ public class Dificultad extends javax.swing.JFrame {
         config.setSistemaUsuarios(sistemaUsuarios);
         this.dispose();
     }//GEN-LAST:event_btnDGeniusMouseClicked
-    Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(235, 209, 151);
 
     private void btnDNormalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDNormalMouseEntered
         // TODO add your handling code here:
@@ -192,6 +202,7 @@ public class Dificultad extends javax.swing.JFrame {
     private javax.swing.JLabel btnDGenius;
     private javax.swing.JLabel btnDNormal;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

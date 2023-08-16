@@ -26,7 +26,6 @@ public class MiPerfil extends javax.swing.JFrame {
         initComponents();
         this.sistemaUsuarios = sistemaUsuarios;
         this.ventanaPrincipal = ventanaPrincipal;
-        cargarPartidas();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -38,22 +37,6 @@ public class MiPerfil extends javax.swing.JFrame {
         this.usuario = usuario;
         mostrarInformacionUsuario();
         mostrarInformacionUsuarioo();
-    }
-
-    public void cargarPartidas() {
-        ArrayList<Partida> partidas = sistemaUsuarios.usuarioIniciado.getPartidas();
-        DefaultTableModel model = (DefaultTableModel) matchTable.getModel();
-
-        for (int i = (partidas.toArray().length - 1); i >= 0; i--) {
-            Partida partida = partidas.get(i);
-            String resultado;
-            if (partida.puntosGanados == 1.5) {
-                resultado = "EMPATE";
-            } else {
-                resultado = (partida.victoria) ? "VICTORIA" : "DERROTA";
-            }
-            model.addRow(new Object[]{partida.contrincante.getUsuario(), resultado,partida.mensajeGane, partida.fecha, partida.puntosGanados});
-        }
     }
 
     public void mostrarInformacionUsuario() {
@@ -88,9 +71,8 @@ public class MiPerfil extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        btnVerDatos = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        matchTable = new javax.swing.JTable();
         btnCambiar = new javax.swing.JLabel();
         btnBack = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -104,30 +86,28 @@ public class MiPerfil extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnVerDatos.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
+        btnVerDatos.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerDatos.setText("VER MIS DATOS");
+        btnVerDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerDatosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerDatosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerDatosMouseExited(evt);
+            }
+        });
+        jPanel1.add(btnVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
+
+        labelUsuario.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
         labelUsuario.setForeground(new java.awt.Color(255, 255, 255));
         labelUsuario.setText("usuario");
         jPanel1.add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
 
-        matchTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Contrincante", "Resultado", "Condición", "Fecha", "Puntos Ganados"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(matchTable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 586, 300));
-
+        btnCambiar.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
         btnCambiar.setForeground(new java.awt.Color(255, 255, 255));
         btnCambiar.setText("CAMBIAR PASSWORD");
         btnCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,8 +121,9 @@ public class MiPerfil extends javax.swing.JFrame {
                 btnCambiarMouseExited(evt);
             }
         });
-        jPanel1.add(btnCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, -1, -1));
+        jPanel1.add(btnCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
 
+        btnBack.setFont(new java.awt.Font("Rockwell Condensed", 0, 18)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("REGRESAR");
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,24 +137,29 @@ public class MiPerfil extends javax.swing.JFrame {
                 btnBackMouseExited(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, -1));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 70, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Usuario:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Puntos Totales:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
 
+        Labelpuntos.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
         Labelpuntos.setForeground(new java.awt.Color(255, 255, 255));
         Labelpuntos.setText("puntos");
-        jPanel1.add(Labelpuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 84, 16));
+        jPanel1.add(Labelpuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 84, 16));
 
+        jLabel1.setFont(new java.awt.Font("Parchment", 0, 70)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mi Perfil");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
+        btnEliminar.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("ELIMINAR CUENTA");
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,7 +173,7 @@ public class MiPerfil extends javax.swing.JFrame {
                 btnEliminarMouseExited(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/fondoMP.png"))); // NOI18N
@@ -219,7 +205,6 @@ public class MiPerfil extends javax.swing.JFrame {
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
         this.dispose();
-
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
@@ -229,7 +214,7 @@ public class MiPerfil extends javax.swing.JFrame {
         delete.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEliminarMouseClicked
-    Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(97, 202, 154);
 
     private void btnCambiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarMouseEntered
         // TODO add your handling code here:
@@ -267,6 +252,25 @@ public class MiPerfil extends javax.swing.JFrame {
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnEliminarMouseExited
 
+    private void btnVerDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDatosMouseClicked
+        // TODO add your handling code here:
+        VerDatosMP perfil = new VerDatosMP(sistemaUsuarios, ventanaPrincipal);
+        perfil.setUsuario(usuario);
+        perfil.setVisible(true);
+    }//GEN-LAST:event_btnVerDatosMouseClicked
+
+    private void btnVerDatosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDatosMouseEntered
+        // TODO add your handling code here:
+        btnVerDatos.setForeground(SELECT_COLOR);
+        setCursor(Cursor.HAND_CURSOR);
+    }//GEN-LAST:event_btnVerDatosMouseEntered
+
+    private void btnVerDatosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDatosMouseExited
+        // TODO add your handling code here:
+        btnVerDatos.setForeground(Color.white);
+        setCursor(Cursor.DEFAULT_CURSOR);
+    }//GEN-LAST:event_btnVerDatosMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -276,13 +280,12 @@ public class MiPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel btnBack;
     private javax.swing.JLabel btnCambiar;
     private javax.swing.JLabel btnEliminar;
+    private javax.swing.JLabel btnVerDatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelUsuario;
-    private javax.swing.JTable matchTable;
     // End of variables declaration//GEN-END:variables
 }

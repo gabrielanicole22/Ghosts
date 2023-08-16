@@ -5,6 +5,7 @@
 package ghosts;
 
 import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.SwingWorker;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
@@ -21,7 +22,8 @@ public class ProgressBar extends javax.swing.JFrame {
         initComponents();
         simulateProgress();
         customizeProgressBar();
-        progressBar.setForeground(new java.awt.Color(220, 102, 204));
+        progressBar.setForeground(new java.awt.Color(7, 96, 126));
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
 
@@ -29,7 +31,7 @@ public class ProgressBar extends javax.swing.JFrame {
         progressBar.setUI(new BasicProgressBarUI() {
             @Override
             protected Color getSelectionBackground() {
-                return Color.BLUE;
+                return Color.DARK_GRAY;
             }
 
             @Override
@@ -83,27 +85,31 @@ public class ProgressBar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         progressBar = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 0, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        progressBar.setBackground(new java.awt.Color(204, 153, 255));
+        progressBar.setBackground(new java.awt.Color(51, 51, 51));
         progressBar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        progressBar.setForeground(new java.awt.Color(51, 0, 51));
+        progressBar.setForeground(new java.awt.Color(255, 255, 255));
         progressBar.setStringPainted(true);
-        jPanel1.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 540, 30));
+        jPanel1.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 790, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/made by Gabriela nicole (1).gif"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 590));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
         );
 
         pack();
@@ -146,6 +152,7 @@ public class ProgressBar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables

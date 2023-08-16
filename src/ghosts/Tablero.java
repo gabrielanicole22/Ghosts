@@ -29,12 +29,12 @@ public class Tablero extends JPanel {
     private int GhostsMalosPlayer2;
     private int GhostsBuenosPlayer2;
 
-    ArrayList<Personaje> FantasmasInicialesPlayer1 = Personaje.getGhostsPlayer1();
-    ArrayList<Personaje> FantasmasInicialesPlayer2 = Personaje.getGhostsPlayer2();
-    ArrayList<Personaje> FantasmasInicialesGeniusP1 = Personaje.getGhostsPlayer1Genius();
-    ArrayList<Personaje> FantasmasInicialesGeniusP2 = Personaje.getGhostsPlayer2Genius();
-    ArrayList<Personaje> FantasmasInicialesGeniusP1Fake = Personaje.getGhostsPlayer1GeniusFake();
-    ArrayList<Personaje> FantasmasInicialesGeniusP2Fake = Personaje.getGhostsPlayer2GeniusFake();
+    ArrayList<Personaje> FantasmasInicialesPlayer1 = PersonajePlayer1.getGhostsPlayer1();
+    ArrayList<Personaje> FantasmasInicialesPlayer2 = PersonajePlayer2.getGhostsPlayer2();
+    ArrayList<Personaje> FantasmasInicialesGeniusP1 = PersonajeGenius.getGhostsPlayer1Genius();
+    ArrayList<Personaje> FantasmasInicialesGeniusP2 = PersonajeGenius.getGhostsPlayer2Genius();
+    ArrayList<Personaje> FantasmasInicialesGeniusP1Fake = PersonajeGenius.getGhostsPlayer1GeniusFake();
+    ArrayList<Personaje> FantasmasInicialesGeniusP2Fake = PersonajeGenius.getGhostsPlayer2GeniusFake();
     private ArrayList<Personaje> FantasmasEliminadosPlayer1 = new ArrayList<Personaje>();
     private ArrayList<Personaje> FantasmasEliminadosPlayer2 = new ArrayList<Personaje>();
 
@@ -220,16 +220,16 @@ public class Tablero extends JPanel {
                 bandoGanador = "Player 2";
                 bandoPerdedor = "Player 1";
             }
-            
-            String mensaje= " ";
+
+            String mensaje = " ";
             // Mostrar mensaje de victoria
             if (turnoPlayer1) {
                 mensaje = "¡" + Player1.getUsuario() + " triunfó al sacar del castillo un fantasma bueno!";
             } else {
                 mensaje = "¡" + Player2.getUsuario() + " triunfó al sacar del castillo un fantasma bueno!";
             }
-            Partida partidaGanador = new Partida(perdedor, true, mensaje,bandoGanador, 3, new Date());
-            Partida partidaPerdedor = new Partida(ganador, false,mensaje, bandoPerdedor, 0, new Date());
+            Partida partidaGanador = new Partida(perdedor, true, mensaje, bandoGanador, 3, new Date(), ganador, perdedor);
+            Partida partidaPerdedor = new Partida(ganador, false, mensaje, bandoPerdedor, 0, new Date(), ganador, perdedor);
 
             // Agrega las partidas a los jugadores
             ganador.addPartida(partidaGanador);
@@ -238,16 +238,29 @@ public class Tablero extends JPanel {
             // Agrega las partidas al sistema de usuarios (si es necesario)
             sistemaUsuarios.actualizarUsuario(ganador);
             sistemaUsuarios.actualizarUsuario(perdedor);
-            
+
             JOptionPane.showMessageDialog(null, mensaje);
 
             gameWindow.dispose();
             return true;
         }
         // Si el personaje es de rango 1 o 3, mostrar mensaje sin ganar
-        if ((casillaSeleccionada.personajeActual.rango == 1 && ((row == 0 && column == 0) || (row == 0 && column == 5)))
-                || (casillaSeleccionada.personajeActual.rango == 3 && ((row == 5 && column == 0) || (row == 5 && column == 5)))) {
+        if (((casillaSeleccionada.personajeActual.rango == 1 || casillaSeleccionada.personajeActual.rango == 10) && ((row == 0 && column == 0) || (row == 0 && column == 5)))
+                || ((casillaSeleccionada.personajeActual.rango == 3 || casillaSeleccionada.personajeActual.rango == 0) && ((row == 5 && column == 0) || (row == 5 && column == 5)))) {
+
+            String mensaje;
+
+            if (casillaSeleccionada.personajeActual.rango == 1 || casillaSeleccionada.personajeActual.rango == 3) {
+                mensaje = "Has sacado a un fantasma malo del castillo.";
+            } else {
+                mensaje = "Has sacado a un fantasma falso del castillo.";
+            }
+
             casillaSeleccionada.personajeActual = null;
+            JOptionPane.showMessageDialog(null, mensaje);
+
+            System.out.println(mensaje);
+
             return true;
         }
 
@@ -282,7 +295,7 @@ public class Tablero extends JPanel {
         for (int[] zone : restrictedZones) {
             int row = zone[0];
             int column = zone[1];
-            colocarImagenEnCasilla(row, column, "puerta", 100, 100);
+            colocarImagenEnCasilla(row, column, "puertaa", 100, 100);
         }
     }
 
@@ -292,35 +305,36 @@ public class Tablero extends JPanel {
         ImageIcon resizedIcon = new ImageIcon(image);
         casillas[fila][columna].label.setIcon(resizedIcon);
     }
+
     private void moverPersonaje(int newRow, int newColumn) {
         if (juegoTerminado) {
             return;
         }
-   if (casillas[newRow][newColumn].personajeActual != null) {
-        Personaje ganador = calcularCombate(casillaSeleccionada.personajeActual, casillas[newRow][newColumn].personajeActual);
-        JPanel panel;
-        String mensajeCombate = "";
-        
-if (ganador == casillaSeleccionada.personajeActual) {
-    if (casillas[newRow][newColumn].personajeActual.rango == 2) {
-        mensajeCombate = "¡Te has comido a un fantasma bueno de " + Player1.getUsuario()+"!";
-    } else if (casillas[newRow][newColumn].personajeActual.rango == 4) {
-        mensajeCombate = "¡Te has comido a un fantasma bueno de " + Player2.getUsuario()+"!";
-    } else if (casillas[newRow][newColumn].personajeActual.rango == 1) {
-        mensajeCombate = "¡Te has comido a un fantasma malo de " + Player1.getUsuario()+"!";
-    } else if (casillas[newRow][newColumn].personajeActual.rango == 3) {
-        mensajeCombate = "¡Te has comido a un fantasma malo de " + Player2.getUsuario()+"!";
-    } else if (casillas[newRow][newColumn].personajeActual.rango == 0) {
-        mensajeCombate = "ERA UN FANTASMA FALSO de " + Player2.getUsuario()+"!";
-    } else if (casillas[newRow][newColumn].personajeActual.rango == 10) {
-        mensajeCombate = "ERA UN FANTASMA FALSO de " + Player1.getUsuario()+"!";
-    }
+        if (casillas[newRow][newColumn].personajeActual != null) {
+            Personaje ganador = calcularCombate(casillaSeleccionada.personajeActual, casillas[newRow][newColumn].personajeActual);
+            JPanel panel;
+            String mensajeCombate = "";
 
-        } else {
-            mensajeCombate = "¡Un falso no puede comer!";
-        }
-        
-        JOptionPane.showMessageDialog(null, mensajeCombate);
+            if (ganador == casillaSeleccionada.personajeActual) {
+                if (casillas[newRow][newColumn].personajeActual.rango == 2) {
+                    mensajeCombate = "¡Te has comido a un fantasma bueno de " + Player1.getUsuario() + "!";
+                } else if (casillas[newRow][newColumn].personajeActual.rango == 4) {
+                    mensajeCombate = "¡Te has comido a un fantasma bueno de " + Player2.getUsuario() + "!";
+                } else if (casillas[newRow][newColumn].personajeActual.rango == 1) {
+                    mensajeCombate = "¡Te has comido a un fantasma malo de " + Player1.getUsuario() + "!";
+                } else if (casillas[newRow][newColumn].personajeActual.rango == 3) {
+                    mensajeCombate = "¡Te has comido a un fantasma malo de " + Player2.getUsuario() + "!";
+                } else if (casillas[newRow][newColumn].personajeActual.rango == 0) {
+                    mensajeCombate = "¡ERA UN FANTASMA FALSO de " + Player2.getUsuario() + "!";
+                } else if (casillas[newRow][newColumn].personajeActual.rango == 10) {
+                    mensajeCombate = "¡ERA UN FANTASMA FALSO de " + Player1.getUsuario() + "!";
+                }
+
+            } else {
+                mensajeCombate = "¡Tu fantasma falso no puede comer a fantasmas malos ni buenos, queda eliminado!";
+            }
+
+            JOptionPane.showMessageDialog(null, mensajeCombate);
             // Eliminar pieza derrotada.
             if (ganador == null) { // Ambas piezas fueron eliminadas porque eran del mismo rango
                 casillaSeleccionada.setPersonaje(null);
@@ -344,9 +358,8 @@ if (ganador == casillaSeleccionada.personajeActual) {
         // Mover la imagen a la nueva posición
         casillas[newRow][newColumn].setPersonaje(personaje);
         actualizarTurno();
-
     }
-    
+
     public Personaje calcularCombate(Personaje atacante, Personaje defensor) {
         Personaje ganador = atacante;
 
@@ -387,9 +400,9 @@ if (ganador == casillaSeleccionada.personajeActual) {
 
         String mensaje;
         if (!turnoPlayer1) {
-            mensaje = "fin del turno de " + Player1.getUsuario() + ", deja que  " + Player2.getUsuario() + " juegue su turno.";
+            mensaje = "Fin del turno de " + Player1.getUsuario() + ", deja que  " + Player2.getUsuario() + " juegue su turno.";
         } else {
-            mensaje = "fin del turno de " + Player2.getUsuario() + " deja que  " + Player1.getUsuario() + " juegue su turno.";
+            mensaje = "Fin del turno de " + Player2.getUsuario() + " deja que  " + Player1.getUsuario() + " juegue su turno.";
         }
         JOptionPane.showMessageDialog(null, mensaje);
 
@@ -457,8 +470,8 @@ if (ganador == casillaSeleccionada.personajeActual) {
             }
             String mensaje = ganador.getUsuario() + " ha ganado ya que "
                     + perdedor.getUsuario() + " se ha retirado del juego. - " + fecha;
-            Partida partidaGanador = new Partida(perdedor, true,mensaje, bandoGanador, 3, fecha);
-            Partida partidaPerdedor = new Partida(ganador, false,mensaje, bandoPerdedor, 0, fecha);
+            Partida partidaGanador = new Partida(perdedor, true, mensaje, bandoGanador, 3, fecha, ganador, perdedor);
+            Partida partidaPerdedor = new Partida(ganador, false, mensaje, bandoPerdedor, 0, fecha, ganador, perdedor);
 
             // El bando opuesto gana la partida.
             stats.addPartida(!turnoPlayer1);
@@ -529,34 +542,34 @@ if (ganador == casillaSeleccionada.personajeActual) {
         // Verificar si los fantasmas buenos o malos llegaron a 0
         if (GhostsBuenosPlayer1 == 0 || GhostsBuenosPlayer2 == 0 || GhostsMalosPlayer1 == 0 || GhostsMalosPlayer2 == 0) {
             if (GhostsMalosPlayer1 == 0) {
-    mensajeVictoria = "¡"+Player1.getUsuario() + " triunfó porque " + Player2.getUsuario() + " le capturó todos sus fantasmas malos!";
-    Partida partidaGanador = new Partida(Player2, true,mensajeVictoria, "1", 3, new Date());
-    Partida partidaPerdedor = new Partida(Player1, false,mensajeVictoria, "2", 0, new Date());
-    Player1.addPartida(partidaGanador);
-    Player2.addPartida(partidaPerdedor);
-    stats.addPartida(true);
-} else if (GhostsMalosPlayer2 == 0) {
-    mensajeVictoria = "¡"+Player2.getUsuario() + " triunfó porque " + Player1.getUsuario() + " le capturó todos sus fantasmas malos!";
-    Partida partidaGanador = new Partida(Player1, true, mensajeVictoria,"2", 3, new Date());
-    Partida partidaPerdedor = new Partida(Player2, false,mensajeVictoria, "1", 0, new Date());
-    Player2.addPartida(partidaGanador);
-    Player1.addPartida(partidaPerdedor);
-    stats.addPartida(false);
-} else if (GhostsBuenosPlayer1 == 0) {
-    mensajeVictoria = "¡"+Player2.getUsuario() + " triunfó sobre " + Player1.getUsuario() + " porque capturó todos sus fantasmas buenos.";
-    Partida partidaGanador = new Partida(Player2, true,mensajeVictoria, "2", 3, new Date());
-    Partida partidaPerdedor = new Partida(Player1, false, mensajeVictoria,"1", 0, new Date());
-    Player2.addPartida(partidaGanador);
-    Player1.addPartida(partidaPerdedor);
-    stats.addPartida(false);
-} else if (GhostsBuenosPlayer2 == 0) {
-    mensajeVictoria = "¡"+Player1.getUsuario() + " triunfó sobre " + Player2.getUsuario() + " porque capturó todos sus fantasmas buenos.";
-    Partida partidaGanador = new Partida(Player1, true,mensajeVictoria, "1", 3, new Date());
-    Partida partidaPerdedor = new Partida(Player2, false,mensajeVictoria, "2", 0, new Date());
-    Player1.addPartida(partidaGanador);
-    Player2.addPartida(partidaPerdedor);
-    stats.addPartida(true);
-}
+                mensajeVictoria = "¡" + Player1.getUsuario() + " triunfó porque " + Player2.getUsuario() + " le capturó todos sus fantasmas malos!";
+                Partida partidaGanador = new Partida(Player2, true, mensajeVictoria, "1", 3, new Date(), Player1, Player2);
+                Partida partidaPerdedor = new Partida(Player1, false, mensajeVictoria, "2", 0, new Date(), Player1, Player2);
+                Player1.addPartida(partidaGanador);
+                Player2.addPartida(partidaPerdedor);
+                stats.addPartida(true);
+            } else if (GhostsMalosPlayer2 == 0) {
+                mensajeVictoria = "¡" + Player2.getUsuario() + " triunfó porque " + Player1.getUsuario() + " le capturó todos sus fantasmas malos!";
+                Partida partidaGanador = new Partida(Player1, true, mensajeVictoria, "2", 3, new Date(), Player2, Player1);
+                Partida partidaPerdedor = new Partida(Player2, false, mensajeVictoria, "1", 0, new Date(), Player2, Player1);
+                Player2.addPartida(partidaGanador);
+                Player1.addPartida(partidaPerdedor);
+                stats.addPartida(false);
+            } else if (GhostsBuenosPlayer1 == 0) {
+                mensajeVictoria = "¡" + Player2.getUsuario() + " triunfó sobre " + Player1.getUsuario() + " porque capturó todos sus fantasmas buenos!";
+                Partida partidaGanador = new Partida(Player2, true, mensajeVictoria, "2", 3, new Date(), Player2, Player1);
+                Partida partidaPerdedor = new Partida(Player1, false, mensajeVictoria, "1", 0, new Date(), Player2, Player1);
+                Player2.addPartida(partidaGanador);
+                Player1.addPartida(partidaPerdedor);
+                stats.addPartida(false);
+            } else if (GhostsBuenosPlayer2 == 0) {
+                mensajeVictoria = "¡" + Player1.getUsuario() + " triunfó sobre " + Player2.getUsuario() + " porque capturó todos sus fantasmas buenos!";
+                Partida partidaGanador = new Partida(Player1, true, mensajeVictoria, "1", 3, new Date(), Player1, Player2);
+                Partida partidaPerdedor = new Partida(Player2, false, mensajeVictoria, "2", 0, new Date(), Player1, Player2);
+                Player1.addPartida(partidaGanador);
+                Player2.addPartida(partidaPerdedor);
+                stats.addPartida(true);
+            }
 
             JOptionPane.showMessageDialog(null, mensajeVictoria);
             juegoTerminado = true;
@@ -564,11 +577,8 @@ if (ganador == casillaSeleccionada.personajeActual) {
             mainWindow.setStats(stats);
         }
     }
-    private boolean player1FinishedPositioning = false;
-    private boolean player2FinishedPositioning = false;
-    private boolean juegoComenzado = false;
-
-    private int obtenerCoordenada(String mensaje) {
+    /*
+     private int obtenerCoordenada(String mensaje) {
         int coordenada = -1;
         while (true) {
             try {
@@ -584,6 +594,26 @@ if (ganador == casillaSeleccionada.personajeActual) {
             }
         }
         return coordenada;
+    }*/
+    private boolean player1FinishedPositioning = false;
+    private boolean player2FinishedPositioning = false;
+    private boolean juegoComenzado = false;
+
+    //Recursiva
+    private int obtenerCoordenada(String mensaje) {
+        try {
+            String input = JOptionPane.showInputDialog(mensaje);
+            int coordenada = Integer.parseInt(input);
+            if (coordenada >= 0 && coordenada <= 5) {
+                return coordenada;
+            } else {
+                JOptionPane.showMessageDialog(null, "Coordenada fuera de rango. Ingresa un valor entre 0 y 5.");
+                return obtenerCoordenada(mensaje);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingresa un valor numérico válido.");
+            return obtenerCoordenada(mensaje);
+        }
     }
 
     public void posicionarAleatoriamente() {
@@ -640,13 +670,13 @@ if (ganador == casillaSeleccionada.personajeActual) {
                 if (!player1FinishedPositioning) {
                     // Posicionamiento manual para el jugador 1
                     while (!FantasmasInicialesPlayer1.isEmpty()) {
-                        int fila = obtenerCoordenada(Player1.getUsuario() + ", posiciona un fantasma. Ingresa la fila (0-5):");
+                        int fila = obtenerCoordenada(Player1.getUsuario() + ", posiciona un fantasma "+FantasmasInicialesPlayer1.get(0).getNombre()+". Ingresa la fila (4-5):");
                         int columna = obtenerCoordenada("Ingresa la columna (0-5):");
                         if (casillas[fila][columna].personajeActual != null) {
                             JOptionPane.showMessageDialog(null, "La casilla seleccionada ya está ocupada por un personaje. Elige otra casilla.");
                             continue;  // Vuelve a pedir las coordenadas
                         }
-                        if ((fila >= 4 && fila <= 5) && (columna != 0 && columna != 5)) {
+                        if ((fila == 4 && columna >= 0 && columna <= 5) || (fila == 5 && columna >= 1 && columna <= 4)) {
                             Personaje personaje = FantasmasInicialesPlayer1.remove(0);
                             personaje.posicionado = true;
                             casillas[fila][columna].setPersonaje(personaje);
@@ -658,19 +688,19 @@ if (ganador == casillaSeleccionada.personajeActual) {
                                 JOptionPane.showMessageDialog(null, Player1.getUsuario() + " ha colocado todos sus fantasmas. Es el turno del jugador 2 para posicionar sus fantasmas.");
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Coordenadas inválidas. " + Player1.getUsuario() + " solo puede posicionar fantasmas en las filas 4 y 5, excepto las esquinas.");
+                            JOptionPane.showMessageDialog(null, "Coordenadas inválidas. " + Player1.getUsuario() + " solo puede posicionar fantasmas en las filas 4-5, columnas 0-5, excepto las esquinas.");
                         }
                     }
                 } else if (!player2FinishedPositioning) {
                     // Posicionamiento manual para el jugador 2
                     while (!FantasmasInicialesPlayer2.isEmpty()) {
-                        int fila = obtenerCoordenada(Player2.getUsuario() + ", posiciona un fantasma. Ingresa la fila (0-5):");
+                        int fila = obtenerCoordenada(Player2.getUsuario() + ", posiciona un fantasma "+FantasmasInicialesPlayer2.get(0).getNombre()+". Ingresa la fila (0-1):");
                         int columna = obtenerCoordenada("Ingresa la columna (0-5):");
                         if (casillas[fila][columna].personajeActual != null) {
                             JOptionPane.showMessageDialog(null, "La casilla seleccionada ya está ocupada por un personaje. Elige otra casilla.");
                             continue;  // Vuelve a pedir las coordenadas
                         }
-                        if ((fila >= 0 && fila <= 1) && (columna != 0 && columna != 5)) {
+                        if ((fila == 1 && columna >= 0 && columna <= 5) || (fila == 0 && columna >= 1 && columna <= 4)) {
                             Personaje personaje = FantasmasInicialesPlayer2.remove(0);
                             personaje.posicionado = true;
                             casillas[fila][columna].setPersonaje(personaje);
@@ -691,7 +721,7 @@ if (ganador == casillaSeleccionada.personajeActual) {
                                 juegoComenzado = true; // Marcar el juego como comenzado
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Coordenadas inválidas. " + Player2.getUsuario() + " solo puede posicionar fantasmas en las filas 0 y 1, excepto las esquinas.");
+                            JOptionPane.showMessageDialog(null, "Coordenadas inválidas. " + Player2.getUsuario() + " solo puede posicionar fantasmas en las filas 0-1, columnas 0-5, excepto las esquinas.");
                         }
                     }
                 }
@@ -699,18 +729,32 @@ if (ganador == casillaSeleccionada.personajeActual) {
         }
     }
 
+    private boolean esCoordenadaValida(Personaje personaje, int fila, int columna) {
+        if ((personaje.rango == 1 || personaje.rango == 2) && (fila == 4 && columna >= 0 && columna <= 5) || (fila == 5 && columna >= 1 && columna <= 4)) {
+            return casillas[fila][columna].personajeActual == null;
+        }
+        if ((personaje.rango == 3 || personaje.rango == 4) && (fila == 1 && columna >= 0 && columna <= 5) || (fila == 0 && columna >= 1 && columna <= 4)) {
+            return casillas[fila][columna].personajeActual == null;
+        }
+        return false;
+    }
+
     public void posicionarManualYAleatorio() {
         Random random = new Random();
-        
+
         if (!Usuario.EsModoAleatorio && Usuario.ModoGenius) {
             if (!juegoComenzado) {
                 if (!player1FinishedPositioning) {
                     while (!FantasmasInicialesGeniusP1.isEmpty()) {
-                        int fila = obtenerCoordenada(Player1.getUsuario() + ", posiciona un fantasma " + FantasmasInicialesGeniusP1.get(0).getNombre() + ". Ingresa la fila (0-5):");
-                        int columna = obtenerCoordenada("Ingresa la columna (1-4):");
+                        int fila = obtenerCoordenada(Player1.getUsuario() + ", posiciona un fantasma " + FantasmasInicialesGeniusP1.get(0).getNombre() + ". Ingresa la fila (4-5):");
+                        int columna = obtenerCoordenada("Ingresa la columna (0-5):");
                         Personaje personaje = FantasmasInicialesGeniusP1.get(0);
+                        if (!esCoordenadaValida(personaje, fila, columna)) {
+                            JOptionPane.showMessageDialog(null, "Coordenadas inválidas o rango incorrecto. " + Player1.getUsuario() + " solo puede posicionar fantasmas en las filas 4-5, columnas 0-5, excepto las esquinas.");
+                            continue; // Reiniciar el ciclo para pedir nuevas coordenadas
+                        }
                         if ((personaje.rango == 1 || personaje.rango == 2)
-                                && (fila >= 4 && fila <= 5) && (columna != 0 && columna != 5)) {
+                                && ((fila == 4 && columna >= 0 && columna <= 5) || (fila == 5 && columna >= 1 && columna <= 4))) {
                             if (casillas[fila][columna].personajeActual != null) {
                                 JOptionPane.showMessageDialog(null, "La casilla seleccionada ya está ocupada por un personaje. Elige otra casilla.");
                                 continue;
@@ -733,33 +777,37 @@ if (ganador == casillaSeleccionada.personajeActual) {
                                 }
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Coordenadas inválidas o rango incorrecto. " + Player1.getUsuario() + " solo puede posicionar fantasmas en las filas 4 y 5, excepto las esquinas.");
+                            JOptionPane.showMessageDialog(null, "Coordenadas inválidas o rango incorrecto. " + Player1.getUsuario() + " solo puede posicionar fantasmas en las filas 4-5, columnas 0-5 excepto las esquinas.");
                             break;
                         }
                     }
-
-                    for (Personaje personajeActual : FantasmasInicialesGeniusP1Fake) {
-                        if (personajeActual.rango == 10 && !personajeActual.posicionado) {
-                            int filaAleatoria;
-                            int columnaAleatoria;
-                            do {
-                                filaAleatoria = 4 + random.nextInt(2);
-                                columnaAleatoria = 1 + random.nextInt(4);
-                            } while (casillas[filaAleatoria][columnaAleatoria].personajeActual != null);
-
-                            personajeActual.posicionado = true;
-                            casillas[filaAleatoria][columnaAleatoria].setPersonaje(personajeActual);
-                        }
-                        esconderPersonajes();
-                    }
                 }
+                for (Personaje personajeActual : FantasmasInicialesGeniusP1Fake) {
+                    if (personajeActual.rango == 10 && !personajeActual.posicionado) {
+                        int filaAleatoria;
+                        int columnaAleatoria;
+                        do {
+                            filaAleatoria = 4 + random.nextInt(2);
+                            columnaAleatoria = 1 + random.nextInt(4);
+                        } while (casillas[filaAleatoria][columnaAleatoria].personajeActual != null);
+
+                        personajeActual.posicionado = true;
+                        casillas[filaAleatoria][columnaAleatoria].setPersonaje(personajeActual);
+                    }
+                    esconderPersonajes();
+                }
+
                 if (!player2FinishedPositioning) {
                     while (!FantasmasInicialesGeniusP2.isEmpty()) {
-                        int fila = obtenerCoordenada(Player2.getUsuario() + ", posiciona un fantasma " + FantasmasInicialesGeniusP2.get(0).getNombre() + ". Ingresa la fila (0-5):");
-                        int columna = obtenerCoordenada("Ingresa la columna (1-4):");
+                        int fila = obtenerCoordenada(Player2.getUsuario() + ", posiciona un fantasma " + FantasmasInicialesGeniusP2.get(0).getNombre() + ". Ingresa la fila (0-1):");
+                        int columna = obtenerCoordenada("Ingresa la columna (0-5):");
                         Personaje personaje = FantasmasInicialesGeniusP2.get(0);
+                        if (!esCoordenadaValida(personaje, fila, columna)) {
+                            JOptionPane.showMessageDialog(null, "Coordenadas inválidas o rango incorrecto. " + Player2.getUsuario() + " solo puede posicionar fantasmas en las filas 0-1, columnas 0-5, excepto las esquinas.");
+                            continue; // Reiniciar el ciclo para pedir nuevas coordenadas
+                        }
                         if ((personaje.rango == 3 || personaje.rango == 4)
-                                && (fila >= 0 && fila <= 1) && (columna != 0 && columna != 5)) {
+                                && ((fila == 1 && columna >= 0 && columna <= 5) || (fila == 0 && columna >= 1 && columna <= 4))) {
                             if (casillas[fila][columna].personajeActual != null) {
                                 JOptionPane.showMessageDialog(null, "La casilla seleccionada ya está ocupada por un personaje. Elige otra casilla.");
                                 continue;
@@ -778,23 +826,23 @@ if (ganador == casillaSeleccionada.personajeActual) {
                             break;
                         }
                     }
-
-                    for (Personaje personajeActual : FantasmasInicialesGeniusP2Fake) {
-                        if (personajeActual.rango == 0 && !personajeActual.posicionado) {
-                            int filaAleatoria;
-                            int columnaAleatoria;
-                            do {
-                                filaAleatoria = random.nextInt(2);
-                                columnaAleatoria = 1 + random.nextInt(4);
-                            } while (casillas[filaAleatoria][columnaAleatoria].personajeActual != null);
-
-                            personajeActual.posicionado = true;
-                            casillas[filaAleatoria][columnaAleatoria].setPersonaje(personajeActual);
-                        }
-                        esconderPersonajes();
-
-                    }
                 }
+                for (Personaje personajeActual : FantasmasInicialesGeniusP2Fake) {
+                    if (personajeActual.rango == 0 && !personajeActual.posicionado) {
+                        int filaAleatoria;
+                        int columnaAleatoria;
+                        do {
+                            filaAleatoria = random.nextInt(2);
+                            columnaAleatoria = 1 + random.nextInt(4);
+                        } while (casillas[filaAleatoria][columnaAleatoria].personajeActual != null);
+
+                        personajeActual.posicionado = true;
+                        casillas[filaAleatoria][columnaAleatoria].setPersonaje(personajeActual);
+                    }
+                    esconderPersonajes();
+
+                }
+
                 if (player1FinishedPositioning && player2FinishedPositioning) {
                     turnoPlayer1 = !turnoPlayer1;
                     player2FinishedPositioning = true;

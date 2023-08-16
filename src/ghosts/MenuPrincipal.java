@@ -21,8 +21,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
         sistemaUsuarios = new SistemaUsuarios();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
     }
-        Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(235, 209, 151);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JLabel();
         btnRegistro = new javax.swing.JLabel();
         btnSalir = new javax.swing.JLabel();
@@ -44,6 +47,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Segoe Marker", 0, 80)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 204, 255));
+        jLabel2.setText("Menú Principal");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+
+        btnLogin.setFont(new java.awt.Font("Old English Text MT", 0, 50)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Iniciar Sesión");
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -57,8 +66,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnLoginMouseExited(evt);
             }
         });
-        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 100, 20));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 310, 50));
 
+        btnRegistro.setFont(new java.awt.Font("Old English Text MT", 0, 50)); // NOI18N
         btnRegistro.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistro.setText("Registrarse");
         btnRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -72,8 +82,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnRegistroMouseExited(evt);
             }
         });
-        jPanel1.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
+        jPanel1.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, -1, -1));
 
+        btnSalir.setFont(new java.awt.Font("Old English Text MT", 0, 50)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
         btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,7 +98,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnSalirMouseExited(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, -1, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/menuP.jpg"))); // NOI18N
@@ -97,7 +108,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +121,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseClicked
         // TODO add your handling code here:
-                new MenuRegistrarse(sistemaUsuarios, this).setVisible(true);
+        new MenuRegistrarse(sistemaUsuarios, this).setVisible(true);
 
     }//GEN-LAST:event_btnRegistroMouseClicked
 
@@ -126,37 +137,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnRegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseEntered
         // TODO add your handling code here:
-                btnRegistro.setForeground(SELECT_COLOR);
+        btnRegistro.setForeground(SELECT_COLOR);
         setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnRegistroMouseEntered
 
     private void btnRegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseExited
         // TODO add your handling code here:
-                btnRegistro.setForeground(Color.white);
+        btnRegistro.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnRegistroMouseExited
 
     private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
         // TODO add your handling code here:
-                btnLogin.setForeground(SELECT_COLOR);
+        btnLogin.setForeground(SELECT_COLOR);
         setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnLoginMouseEntered
 
     private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseExited
         // TODO add your handling code here:
-                btnLogin.setForeground(Color.white);
+        btnLogin.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnLoginMouseExited
 
     private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
         // TODO add your handling code here:
-                btnSalir.setForeground(SELECT_COLOR);
+        btnSalir.setForeground(SELECT_COLOR);
         setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnSalirMouseEntered
 
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
         // TODO add your handling code here:
-                btnSalir.setForeground(Color.white);
+        btnSalir.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnSalirMouseExited
 
@@ -204,6 +215,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel btnRegistro;
     private javax.swing.JLabel btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,7 +23,7 @@ public class Usuario {
     static boolean ModoGenius = false;
     static boolean EsModoAleatorio = true;
     static boolean EsModoManual = false;
-    
+
     ArrayList<Partida> partidasJugadas;
 
     public Usuario(String usuario, String contrasena) {

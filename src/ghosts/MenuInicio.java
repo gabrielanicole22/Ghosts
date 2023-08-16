@@ -17,7 +17,7 @@ public class MenuInicio extends javax.swing.JFrame {
     /**
      * Creates new form MenuInicio
      */
-        Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(148, 107, 45);
 
     private Usuario usuario;
     SistemaUsuarios sistemaUsuarios;
@@ -29,6 +29,7 @@ public class MenuInicio extends javax.swing.JFrame {
         usuario = sistemaUsuarios.getUsuarioActual();
         setResizable(false);
         habilitarBotonPartidaNueva();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void setStats(Stats stats) {
@@ -71,6 +72,7 @@ public class MenuInicio extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnJugar.setFont(new java.awt.Font("Old English Text MT", 0, 45)); // NOI18N
         btnJugar.setForeground(new java.awt.Color(255, 255, 255));
         btnJugar.setText("Jugar");
         btnJugar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,8 +86,9 @@ public class MenuInicio extends javax.swing.JFrame {
                 btnJugarMouseExited(evt);
             }
         });
-        jPanel1.add(btnJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, -1, -1));
+        jPanel1.add(btnJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
 
+        btnConfiguracion.setFont(new java.awt.Font("Old English Text MT", 0, 45)); // NOI18N
         btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
         btnConfiguracion.setText("Configuración");
         btnConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,8 +102,9 @@ public class MenuInicio extends javax.swing.JFrame {
                 btnConfiguracionMouseExited(evt);
             }
         });
-        jPanel1.add(btnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+        jPanel1.add(btnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
+        btnReports.setFont(new java.awt.Font("Old English Text MT", 0, 45)); // NOI18N
         btnReports.setForeground(new java.awt.Color(255, 255, 255));
         btnReports.setText("Reportes");
         btnReports.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,8 +118,9 @@ public class MenuInicio extends javax.swing.JFrame {
                 btnReportsMouseExited(evt);
             }
         });
-        jPanel1.add(btnReports, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, -1, -1));
+        jPanel1.add(btnReports, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
+        btnCerrarSesion.setFont(new java.awt.Font("Old English Text MT", 0, 45)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrarSesion.setText("Cerrar Sesión");
         btnCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,8 +134,9 @@ public class MenuInicio extends javax.swing.JFrame {
                 btnCerrarSesionMouseExited(evt);
             }
         });
-        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, -1, -1));
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
 
+        btnProfile.setFont(new java.awt.Font("Old English Text MT", 0, 45)); // NOI18N
         btnProfile.setForeground(new java.awt.Color(255, 255, 255));
         btnProfile.setText("Mi Perfil");
         btnProfile.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,7 +150,7 @@ public class MenuInicio extends javax.swing.JFrame {
                 btnProfileMouseExited(evt);
             }
         });
-        jPanel1.add(btnProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, -1, -1));
+        jPanel1.add(btnProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 500));
@@ -173,27 +179,27 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void btnConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionMouseClicked
         // TODO add your handling code here:
-                Configuracion config = new Configuracion(sistemaUsuarios, this);
+        Configuracion config = new Configuracion(sistemaUsuarios, this);
         config.setUsuario(usuario);
         config.setVisible(true);
     }//GEN-LAST:event_btnConfiguracionMouseClicked
 
     private void btnReportsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportsMouseClicked
         // TODO add your handling code here:
-                RankingReportes ranks = new RankingReportes(sistemaUsuarios, stats);
+        RankingReportes ranks = new RankingReportes(sistemaUsuarios, stats);
         ranks.setVisible(true);
     }//GEN-LAST:event_btnReportsMouseClicked
 
     private void btnProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseClicked
         // TODO add your handling code here:
-                MiPerfil perfil = new MiPerfil(sistemaUsuarios, this);
+        MiPerfil perfil = new MiPerfil(sistemaUsuarios, this);
         perfil.setUsuario(usuario);
         perfil.setVisible(true);
     }//GEN-LAST:event_btnProfileMouseClicked
 
     private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
         // TODO add your handling code here:
-                int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas cerrar sesión?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas cerrar sesión?", "Confirmación", JOptionPane.YES_NO_OPTION);
         if (opcion == JOptionPane.YES_OPTION) {
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             sistemaUsuarios.usuarioIniciado = null;
@@ -217,52 +223,51 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void btnConfiguracionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionMouseEntered
         // TODO add your handling code here:
-                btnConfiguracion.setForeground(SELECT_COLOR);
+        btnConfiguracion.setForeground(SELECT_COLOR);
         setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnConfiguracionMouseEntered
 
     private void btnConfiguracionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionMouseExited
         // TODO add your handling code here:
-                btnConfiguracion.setForeground(Color.white);
+        btnConfiguracion.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnConfiguracionMouseExited
 
     private void btnReportsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportsMouseEntered
         // TODO add your handling code here:
-                btnReports.setForeground(SELECT_COLOR);
+        btnReports.setForeground(SELECT_COLOR);
         setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnReportsMouseEntered
 
     private void btnReportsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportsMouseExited
         // TODO add your handling code here:
-                btnReports.setForeground(Color.white);
+        btnReports.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnReportsMouseExited
 
     private void btnProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseEntered
         // TODO add your handling code here:
-                btnProfile.setForeground(SELECT_COLOR);
+        btnProfile.setForeground(SELECT_COLOR);
         setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnProfileMouseEntered
 
     private void btnProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseExited
         // TODO add your handling code here:
-                btnProfile.setForeground(Color.white);
+        btnProfile.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnProfileMouseExited
 
     private void btnCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseEntered
         // TODO add your handling code here:
-                btnCerrarSesion.setForeground(SELECT_COLOR);
+        btnCerrarSesion.setForeground(SELECT_COLOR);
         setCursor(Cursor.HAND_CURSOR);
     }//GEN-LAST:event_btnCerrarSesionMouseEntered
 
     private void btnCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseExited
         // TODO add your handling code here:
-                btnCerrarSesion.setForeground(Color.white);
+        btnCerrarSesion.setForeground(Color.white);
         setCursor(Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_btnCerrarSesionMouseExited
-
 
     /**
      * @param args the command line arguments

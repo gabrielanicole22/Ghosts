@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
  *
  * @author Gabriela Mejía
  */
-import javax.swing.*;
 
 public class CambiarPassword extends javax.swing.JFrame {
 
@@ -34,7 +33,7 @@ public class CambiarPassword extends javax.swing.JFrame {
         this.usuario = usuario;
     }
 
-    Color SELECT_COLOR = new Color(37, 203, 232);
+    Color SELECT_COLOR = new Color(255, 194, 205);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,6 +68,7 @@ public class CambiarPassword extends javax.swing.JFrame {
         jLabel2.setText("Contraseña Nueva:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 140, -1, -1));
 
+        btnCambiarContra.setBackground(new java.awt.Color(0, 0, 0));
         btnCambiarContra.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
         btnCambiarContra.setForeground(new java.awt.Color(204, 204, 204));
         btnCambiarContra.setText("ACTUALIZAR PASSWORD");
@@ -85,13 +85,17 @@ public class CambiarPassword extends javax.swing.JFrame {
                 btnCambiarContraActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCambiarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 185, -1, 46));
+        jPanel1.add(btnCambiarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, 46));
 
-        jLabel3.setFont(new java.awt.Font("Nirmala UI", 1, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Parchment", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cambiar Contraseña");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, -1, -1));
+
+        txtContraseñaActual.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.add(txtContraseñaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 95, 243, -1));
+
+        txtContraseñaNueva.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.add(txtContraseñaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 140, 244, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondos/ff.jpg"))); // NOI18N
